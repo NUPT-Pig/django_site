@@ -1,7 +1,7 @@
 # django_site
 
 1.
-    安装django, mysql, django rest_framework
+    安装django, mysql, django rest_framework（记得加到settings的installed app）
 
 2.
     django-admin startproject django_site
