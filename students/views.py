@@ -10,16 +10,17 @@ from students.serializers import StudentsSerializer, UserSerializer
 class StudentsView(generics.ListCreateAPIView):
     queryset = Students.objects.all()
     serializer_class = StudentsSerializer
+
     def post(self, request, *args, **kwargs):
-        print '*************'
         try:
             response = super(StudentsView, self).post(request, *args, **kwargs)
             if response.status_code == status.HTTP_201_CREATED:
-                user_serializer = UserSerializer(data=request.DATA)
+                user_serializer = UserSerializer(data=request.data)
                 if user_serializer.is_valid():
                     user_obj = user_serializer.save()
-                    self.object.user = user_obj
-                    self.object.save()
+                    Students.objects.filter(id=response.data['id']).update(user_id=user_obj.id)
+                else:
+                    print user_serializer.errors
         except Exception as e:
             print str(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)
