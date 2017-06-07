@@ -11,6 +11,7 @@ from rest_framework import status
 class LoginView(APIView):
 
     def post(self, request):
+        #admin zas*0******2
         username = request.data.get('username', None)
         password = request.data.get('password', None)
         user = authenticate(username=username, password=password)

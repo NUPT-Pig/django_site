@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
+from management.views import LoginView
 
 urlpatterns = [
-    url(r'^login/$', StudentsView.as_view(), name='list_create_students'),
+    url(r'^login/$', LoginView.as_view(), name='login'),
 ]
