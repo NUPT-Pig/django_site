@@ -52,6 +52,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # default
+  #  'guardian.backends.ObjectPermissionBackend',
+#    'portal.backends.SecureBackend',
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', #just allow user in db
+        #'rest_framework.permissions.AllowAny', #anybody can access, to debug
+    ),
+    'PAGINATE_BY': 20,
+    'PAGINATE_BY_PARAM': 'page_size',
+    'FILTER_BACKEND': 'rest_framework.filters.DjangoFilterBackend',
+}
+
 ROOT_URLCONF = 'django_site.urls'
 
 TEMPLATES = [
@@ -128,3 +148,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SESSION_COOKIE_AGE=60*3
+#SESSION_SAVE_EVERY_REQUEST=True
+#SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+SESSION_COOKIE_SECURE=True
