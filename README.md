@@ -18,3 +18,8 @@
     创建数据模型后
     python manage.py makemigrations students
     python manage.py migrate
+    
+6.
+    安全认证
+    settings里面MIDDLEWARE AUTHENTICATION_BACKENDS 启用session
+    REST_FRAMEWORK 这里面决定认证是否通过  调式的时候改成AllowAny
