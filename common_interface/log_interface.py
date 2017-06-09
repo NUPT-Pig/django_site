@@ -15,4 +15,5 @@ def get_logger(name='general'):
                                 'handlers': ['console', name],
                                 'level': settings.LOGGER_LEVEL,
                                 }
+        logging.config.dictConfig(settings.LOGGING)   # must set this to save config into settings
     return logging.getLogger(name)
