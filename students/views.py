@@ -4,10 +4,15 @@ from rest_framework.response import Response
 
 from students.models import Students
 from students.serializers import StudentsSerializer, UserSerializer
+
+from common_interface.log_interface import get_logger
+logger = get_logger()
+
 # Create your views here.
 
 
 class StudentsView(generics.ListCreateAPIView):
+
     queryset = Students.objects.all()
     serializer_class = StudentsSerializer
 
@@ -20,14 +25,15 @@ class StudentsView(generics.ListCreateAPIView):
                     user_obj = user_serializer.save()
                     Students.objects.filter(id=response.data['id']).update(user_id=user_obj.id)
                 else:
-                    print user_serializer.errors
+                    logger.error('save user error %s' % user_serializer.errors)
         except Exception as e:
-            print str(e)
+            logger.error('save student error %s' % str(e))
             return Response(status=status.HTTP_400_BAD_REQUEST)
         return response
 
 
 class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
+
     queryset = Students.objects.all()
     serializer_class = StudentsSerializer
 
@@ -40,9 +46,9 @@ class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
                 if user_serializer.is_valid():
                     user_serializer.save()
                 else:
-                    print user_serializer.errors
+                    logger.error('save user error %s' % user_serializer.errors)
         except Exception as e:
-            print str(e)
+            logger.error('modify student error %s' % str(e))
             return Response(status=status.HTTP_400_BAD_REQUEST)
         return response
 
@@ -53,6 +59,6 @@ class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
                 obj.user.delete()
             response = super(StudentDetailView, self).delete(request, *args, **kwargs)
         except Exception as e:
-            print str(e)
+            logger.error('delete student error %s' % str(e))
             return Response(status=status.HTTP_400_BAD_REQUEST)
         return response

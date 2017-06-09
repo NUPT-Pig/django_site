@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!u-b4mgvi7gwq#1auiohh2^nenpasb0c^)x^3_e@tj%2(1ifcp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+#if DEBUG=False must set it
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -65,8 +65,8 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated', #just allow user in db
-        #'rest_framework.permissions.AllowAny', #anybody can access, to debug
+        #'rest_framework.permissions.IsAuthenticated', #just allow user in db
+        'rest_framework.permissions.AllowAny', #anybody can access, to debug
     ),
     'PAGINATE_BY': 20,
     'PAGINATE_BY_PARAM': 'page_size',
@@ -149,6 +149,41 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#logging
+LOGGER_LEVEL = "DEBUG"
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[%(module)s:%(funcName)s:%(lineno)s] %(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/anshun/TEST/log/django.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'module_name': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 SESSION_COOKIE_AGE=60*3
 #SESSION_SAVE_EVERY_REQUEST=True

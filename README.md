@@ -23,3 +23,10 @@
     安全认证
     settings里面MIDDLEWARE AUTHENTICATION_BACKENDS 启用session
     REST_FRAMEWORK 这里面决定认证是否通过  调式的时候改成AllowAny
+    login的处理view要在开头去掉认证,不然连login的request也会被拦截
+    
+7.
+    发布前必须 DEBUG = False 
+    
+8.
+    log_interface里面的filename换掉

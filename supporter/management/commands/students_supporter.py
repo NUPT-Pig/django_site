@@ -5,3 +5,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print '****'
+        print args
+        print options
