@@ -30,3 +30,6 @@
     
 8.
     log_interface里面的filename换掉
+    
+9.
+    python manage.py run_all_supporters start<stop list restart>
