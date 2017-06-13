@@ -9,5 +9,4 @@ from django.core.management.base import BaseCommand, CommandError
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        os.system("echo %d > %s" % (os.getpid(), '/home/anshun/TEST/log/hr.txt'))
-        logger.info('students')
+        logger.info('start students supporter')

@@ -65,8 +65,8 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',  # anybody can access, to debug
         #'rest_framework.permissions.IsAuthenticated', #just allow user in db
-        'rest_framework.permissions.AllowAny', #anybody can access, to debug
     ),
     'PAGINATE_BY': 20,
     'PAGINATE_BY_PARAM': 'page_size',

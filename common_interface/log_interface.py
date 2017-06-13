@@ -1,12 +1,14 @@
 import logging
 from django.conf import settings
 
+from common_interface.const import PathConst
+
 def get_logger(name='general'):
     if not settings.LOGGING['loggers'].has_key(name):
         settings.LOGGING['handlers'][name] = {
                                 'level':'DEBUG',
                                 'class':'logging.handlers.RotatingFileHandler',
-                                'filename': '/home/anshun/TEST/log/' + name + '.log',
+                                'filename': PathConst.LOG_FOLDER + name + '.log',
                                 'maxBytes': 500000,
                                 'backupCount': 5,
                                 'formatter': 'verbose',
