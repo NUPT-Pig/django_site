@@ -2,6 +2,7 @@
 
 1.
     安装django, mysql, django rest_framework（记得加到settings的installed app）
+    redis(配置文件在/etc/redis/,启用Unix——sock,chkconfig --level 2345 redis on 设置启动级别)
 
 2.
     django-admin startproject django_site
