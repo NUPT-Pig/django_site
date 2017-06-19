@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from students.models import Students
-from students.serializers import StudentsSerializer, UserSerializer
+from students.models import Student
+from students.serializers import StudentSerializer, UserSerializer
 
 from common_interface.log_interface import get_logger
 logger = get_logger()
@@ -13,8 +13,8 @@ logger = get_logger()
 
 class StudentsView(generics.ListCreateAPIView):
 
-    queryset = Students.objects.all()
-    serializer_class = StudentsSerializer
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
 
     def post(self, request, *args, **kwargs):
         try:
@@ -23,7 +23,7 @@ class StudentsView(generics.ListCreateAPIView):
                 user_serializer = UserSerializer(data=request.data)
                 if user_serializer.is_valid():
                     user_obj = user_serializer.save()
-                    Students.objects.filter(id=response.data['id']).update(user_id=user_obj.id)
+                    Student.objects.filter(id=response.data['id']).update(user_id=user_obj.id)
                 else:
                     logger.error('save user error %s' % user_serializer.errors)
         except Exception as e:
@@ -34,8 +34,8 @@ class StudentsView(generics.ListCreateAPIView):
 
 class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
 
-    queryset = Students.objects.all()
-    serializer_class = StudentsSerializer
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
 
     def put(self, request, *args, **kwargs):
         try:
