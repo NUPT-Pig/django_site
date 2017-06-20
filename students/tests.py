@@ -3,6 +3,7 @@ from rest_framework import status
 
 from django.test import TestCase, Client
 from students.models import Student
+from teachers.models import Teacher
 
 
 # Create your tests here.
@@ -37,14 +38,31 @@ class StudentsTestCase(TestCase):
         self.assertEqual(len(response.data), len(self.students))
 
     def test_post_student(self):
-        response = self.client.post('/students/', data={'username': 'test_0', 'password': 'test_0'})
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        user = User.objects.create(username='teacher_student')
+        teacher = Teacher.objects.create(user=user, gender=True)
+
+        response = self.client.post('/students/', data={'username': 'test_0', 'password': 'test_0', 'teachers': [teacher.id]})
         student = User.objects.get(username='test_0').student
-        self.students.append(student)
-        self.assertEqual(Student.objects.all().count(), len(self.students))
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Student.objects.filter(user__username='test_0').count(), 1)
+        self.assertEqual(student.teachers.all()[0].id, teacher.id)
+
+        student.user.delete()
+        student.delete()
+        user.delete()
+        teacher.delete()
 
     def test_delete_student(self):
-        response = self.client.delete('/students/')
+        student = self.students.pop()
+        id = student.id
+        print id
+        response = self.client.delete('/students/detail/'+str(id)+'/')
+
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Student.objects.filter(id=id).count(), 0)
+        self.assertEqual(User.objects.filter(student__id=id).count(), 0)
+
 
     def test_put_student(self):
         pass

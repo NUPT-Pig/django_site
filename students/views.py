@@ -54,9 +54,7 @@ class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def delete(self, request, *args, **kwargs):
         try:
-            obj = self.get_object()
-            if obj.user:
-                obj.user.delete()
+            #delete student, then user will be deleted too.   onetoone field action
             response = super(StudentDetailView, self).delete(request, *args, **kwargs)
         except Exception as e:
             logger.error('delete student error %s' % str(e))
