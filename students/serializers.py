@@ -20,7 +20,8 @@ class StudentSerializer(serializers.ModelSerializer):
     def get_user_name(self, obj):
         username = ""
         try:
-            username = obj.user.username
+            if obj.user:
+                username = obj.user.username
         except Exception as e:
             logger.error(str(e))
         return username

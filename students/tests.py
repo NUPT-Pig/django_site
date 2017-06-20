@@ -56,7 +56,7 @@ class StudentsTestCase(TestCase):
     def test_delete_student(self):
         student = self.students.pop()
         id = student.id
-        print id
+
         response = self.client.delete('/students/detail/'+str(id)+'/')
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
