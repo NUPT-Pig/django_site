@@ -8,6 +8,8 @@
     django-admin startproject django_site
 
 3.
+
+    sudo apt-get install libmysqlclient-dev
     mysql 用户名root  密码root
     在mysql中创建新的数据库  create database test, 并在 settings 里面配置mysql的连接
 

@@ -107,7 +107,7 @@ DATABASES = {
         'HOST': '',
         'PORT': '',
         'OPTIONS': {
-            'init_command': "SET storage_engine=INNODB, tx_isolation='READ-COMMITTED'",
+            'init_command': "SET default_storage_engine=INNODB, tx_isolation='READ-COMMITTED'",  #<default_>storage_engine
         }
     }
 }
@@ -150,7 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/anshun/python/django_site/django_site/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'django_site/static/')
 MEDIA_ROOT = '/home/anshun/TEST/media/'
 
 #logging
@@ -175,7 +175,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/anshun/TEST/log/django.log',
+            'filename': os.path.join(BASE_DIR, 'django_site/log/django.log'),
             'formatter': 'verbose'
         },
     },
