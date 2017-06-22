@@ -37,7 +37,7 @@ class Command(BaseCommand):
             signal.signal(signal.SIGQUIT, self.handle_quit)
 
             #os.system("python /home/anshun/python/django_site/manage.py students_supporter")
-            child = subprocess.Popen(['python', '/home/anshun/python/django_site/manage.py', 'students_supporter'])
+            child = subprocess.Popen(['python', os.path.join(settings.BASE_DIR, 'manage.py'), 'students_supporter'])
             self.children.append(child)
 
             while not self.is_stop:
