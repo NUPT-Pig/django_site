@@ -3,7 +3,9 @@ django_site
 1.
 ----------------------------------------------------------
 安装django, mysql, django rest_framework（记得加到settings的installed app）
-redis(配置文件在/etc/redis/,启用Unix——sock,chkconfig --level 2345 redis on 设置启动级别)
+redis(配置文件在/etc/redis/,启用Unix——sock,centos可以chkconfig --level 2345 redis on 设置启动级别)
+sudo redis-server /etc/redis/redis.conf (依据conf文件启动redis)
+django_site 修改了redis.conf appendonly yes ; aof 在 dir /var/lib/redis 里面
 
 2.
 -------------------------------------------------------------
@@ -53,8 +55,7 @@ wsgi + apache2 + ubuntu 部署
 chmod -R 777 (需要写入log的文件)
 wsgi.py 文件修改
     a2ensite django_site
-ps: /etc/apache2/ports.conf  可以修改监听的端口 /etc/apache2/apache2.conf 是总入口，里面没有Include available文件夹，
->>所以需要手动a2ensite,除非放在sites_enable文件夹下,当然a2ensite之后，也会放入enable文件夹下。
+ps: /etc/apache2/ports.conf  可以修改监听的端口 /etc/apache2/apache2.conf 是总入口，里面没有Include available文件夹，所以需要手动a2ensite,除非放在sites_enable文件夹下,当然a2ensite之后，也会放入enable文件夹下。
 
 11.
 ---------------------------------------------------------------------------------------------------------------
