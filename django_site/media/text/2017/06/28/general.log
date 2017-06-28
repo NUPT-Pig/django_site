@@ -1,0 +1,1 @@
+[views:post:28] ERROR 2017-06-26 01:52:38,573 views 6070 -1386288320 save user error {'username': [u'This field is required.'], 'password': [u'This field is required.']}

@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^students/', include('students.urls')),
     url(r'^teachers/', include('teachers.urls')),
     url(r'^management/', include('management.urls')),
+    url(r'upload_files/', include('upload_files.urls')),
 ]
 
 

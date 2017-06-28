@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'students',
     'teachers',
     'supporter',
+    'upload_files',
 ]
 
 MIDDLEWARE = [
@@ -151,7 +152,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'django_site/static/')
-MEDIA_ROOT = '/home/anshun/TEST/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'django_site/media/')
 
 #logging
 LOGGER_LEVEL = "DEBUG"
