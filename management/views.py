@@ -1,7 +1,7 @@
 import logging
 
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 from rest_framework.views import APIView
@@ -18,7 +18,7 @@ class LoginView(APIView):
     permission_classes = ()
 
     def post(self, request):
-        #admin zas*0******2
+        #admin *****
         username = request.data.get('username', None)
         password = request.data.get('password', None)
         logger.info('%s login' % username)
@@ -30,3 +30,13 @@ class LoginView(APIView):
             return response
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+class LogoutView(APIView):
+
+    def post(self, request):
+        logout(request)
+        response = Response(status=status.HTTP_200_OK)
+        response.delete_cookie('random_string')
+        return response
+
