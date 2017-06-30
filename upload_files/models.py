@@ -9,3 +9,8 @@ from django.db import models
 class TextFile(models.Model):
     name = models.CharField(max_length=64, default='default')
     file = models.FileField(upload_to='text/%Y/%m/%d', blank=True, null=True)
+
+
+class MediaFile(models.Model):
+    name = models.CharField(max_length=64, default='default')
+    file = models.FileField(upload_to='media/%Y/%m/%d', blank=True, null=True)
