@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'common_interface.django_middleware_interface.TestMiddleware',  # modify every request and response
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -69,6 +70,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',  # anybody can access, to debug
         #'rest_framework.permissions.IsAuthenticated', #just allow user in db
+        'common_interface.restframework_middleware_interface.TestPermissions',  # check self defined permissions
     ),
     'PAGINATE_BY': 20,
     'PAGINATE_BY_PARAM': 'page_size',
