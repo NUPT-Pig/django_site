@@ -10,3 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         logger.info('start students supporter')
+        try:
+            while True:
+                pass
+        except Exception as e:
+            logger.error('%s' % str(e))
