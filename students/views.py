@@ -18,6 +18,7 @@ class StudentsView(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         try:
+            logger.info('request = %s' % request.data)
             response = super(StudentsView, self).post(request, *args, **kwargs)
             if response.status_code == status.HTTP_201_CREATED:
                 user_serializer = UserSerializer(data=request.data)

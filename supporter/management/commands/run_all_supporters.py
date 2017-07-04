@@ -44,6 +44,8 @@ class Command(BaseCommand):
             while not self.is_stop:
                 time.sleep(60*60)
 
+            os.system("echo %s > %s" % ('begin terminate subprocess', PathConst.DAEMON_LOG))
+
             for child in self.children:
                 #A None value indicates that the process hasn't terminated yet.
                 # A negative value -N indicates that the child was terminated by signal N (Unix only).

@@ -110,7 +110,7 @@ DATABASES = {
         'HOST': '',
         'PORT': '',
         'OPTIONS': {
-            'init_command': "SET default_storage_engine=INNODB, tx_isolation='READ-COMMITTED'",  #<default_>storage_engine
+            'init_command': "SET default_storage_engine=INNODB, tx_isolation='READ-COMMITTED', character_set_database='utf8' ",  #<default_>storage_engine
         }
     }
 }
