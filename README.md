@@ -1,5 +1,9 @@
 django_site
 =======================================================
+
+****所有的conf文件修改 记得 cp 一份 .bak**** 
+****django 1.10 auth_user username python2 只可以 英文  python3 可以支持 Unicode****
+
 1.
 ----------------------------------------------------------
 安装django, mysql, django rest_framework（记得加到settings的installed app）
@@ -15,7 +19,8 @@ django_site 修改了redis.conf appendonly yes ; aof 在 dir /var/lib/redis 里�
 ------------------------------------------------------------------------------------
     sudo apt-get install libmysqlclient-dev
 mysql 用户名root  密码root
-在mysql中创建新的数据库  create database test, 并在 settings 里面配置mysql的连接
+在mysql中创建新的数据库  create database test, 并在 settings 里面配置mysql的连接   
+将configuration里面的my.conf拷贝到 /etc/mysql/ 下 中文支持
 
 4.
 ------------------------------------------------------------------------------------------
