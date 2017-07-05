@@ -23,11 +23,19 @@ mysql 用户名root  密码root
 将configuration里面的my.conf拷贝到 /etc/mysql/ 下 中文支持   
 远程连接 settings 设置 database 远程的 ip 和 port   
 远程的/etc/mysql/my.conf 下 注释掉 bind-address = 127.0.0.1   
+方法一：授予另外一个用户
     mysql  
     use mysql   
     GRANT ALL PRIVILEGES ON *.* TO 'remoteuser'@'%' IDENTIFIED BY 'remoteuser' WITH GRANT OPTION;
     FLUSH   PRIVILEGES;   
-修改settings里面的USER和PASSWORD为 remoteuser 和 remoteuser
+修改settings里面的USER和PASSWORD为 remoteuser 和 remoteuser   
+方法二：授予root权限
+    mysql
+    use mysql
+    update user set host = '%' where user = 'root';  #  ignore error
+    select host, user from user;  #  just a check
+    flush privileges;
+settings里面的USER和PASSWORD为root账户的用户名和密码 我一般安装设置为 root和root
 
 4.
 ------------------------------------------------------------------------------------------
