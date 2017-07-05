@@ -9,7 +9,7 @@ class RedisSingleton(object):
         return cls._instance
 
     def __init__(self):
-        self.pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
+        self.pool = redis.ConnectionPool(host='localhost', port=6379, db=0)  # remote connection, just set host='*.*.*.*'
         self.r = redis.StrictRedis(connection_pool=self.pool)
 
 

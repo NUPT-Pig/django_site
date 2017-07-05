@@ -8,7 +8,12 @@ django_site
 ----------------------------------------------------------
 安装django, mysql, django rest_framework（记得加到settings的installed app）
 redis(配置文件在/etc/redis/,启用Unix——sock,centos可以chkconfig --level 2345 redis on 设置启动级别)
-sudo redis-server /etc/redis/redis.conf (依据conf文件启动redis)
+sudo redis-server /etc/redis/redis.conf (依据conf文件启动redis)   
+远程连接   
+注释掉 redis.conf 的 bind 127.0.0.1
+sudo /etc/init.d/redis-server restart
+远程主机 redis-cli -h redis主机ip -p 6379 程序中，将redis_interface里面host改成ip
+备份操作   
 django_site 修改了redis.conf appendonly yes ; aof 在 dir /var/lib/redis 里面
 
 2.
