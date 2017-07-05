@@ -20,7 +20,14 @@ django_site 修改了redis.conf appendonly yes ; aof 在 dir /var/lib/redis 里�
     sudo apt-get install libmysqlclient-dev
 mysql 用户名root  密码root
 在mysql中创建新的数据库  create database test, 并在 settings 里面配置mysql的连接   
-将configuration里面的my.conf拷贝到 /etc/mysql/ 下 中文支持
+将configuration里面的my.conf拷贝到 /etc/mysql/ 下 中文支持   
+远程连接 settings 设置 database 远程的 ip 和 port   
+远程的/etc/mysql/my.conf 下 注释掉 bind-address = 127.0.0.1   
+    mysql  
+    use mysql   
+    GRANT ALL PRIVILEGES ON *.* TO 'remoteuser'@'%' IDENTIFIED BY 'remoteuser' WITH GRANT OPTION;
+    FLUSH   PRIVILEGES;   
+修改settings里面的USER和PASSWORD为 remoteuser 和 remoteuser
 
 4.
 ------------------------------------------------------------------------------------------
