@@ -1,8 +1,8 @@
 django_site
 =======================================================
 
-****所有的conf文件修改 记得 cp 一份 .bak**** 
-****django 1.10 auth_user username python2 只可以 英文  python3 可以支持 Unicode****
+\****所有的conf文件修改 记得 cp 一份 .bak\**** 
+\****django 1.10 auth_user username python2 只可以 英文  python3 可以支持 Unicode\****
 
 1.
 ----------------------------------------------------------
@@ -31,7 +31,7 @@ mysql 用户名root  密码root
 方法一：授予另外一个用户
     mysql  
     use mysql   
-    GRANT ALL PRIVILEGES ON *.* TO 'remoteuser'@'%' IDENTIFIED BY 'remoteuser' WITH GRANT OPTION;
+    GRANT ALL PRIVILEGES ON \*.\* TO 'remoteuser'@'%' IDENTIFIED BY 'remoteuser' WITH GRANT OPTION;
     FLUSH   PRIVILEGES;   
 修改settings里面的USER和PASSWORD为 remoteuser 和 remoteuser   
 方法二：授予root权限
