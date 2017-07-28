@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'common_interface.django_middleware_interface.TestMiddleware',  # modify every request and response
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -69,6 +70,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',  # anybody can access, to debug
         #'rest_framework.permissions.IsAuthenticated', #just allow user in db
+        'common_interface.restframework_middleware_interface.TestPermissions',  # check self defined permissions
     ),
     'PAGINATE_BY': 20,
     'PAGINATE_BY_PARAM': 'page_size',
@@ -102,13 +104,13 @@ WSGI_APPLICATION = 'django_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test', # (create database test) in mysql
-        'USER': 'root', #username of mysql
-        'PASSWORD': 'root', #password of mysql
-        'HOST': '',
-        'PORT': '',
+        'NAME': 'test',  # (create database test) in mysql
+        'USER': 'root',  #username of mysql
+        'PASSWORD': 'root',  #password of mysql
+        'HOST': '10.64.66.63',  # remote ip
+        'PORT': '3306',  # remote port , find it from /etc/mysql/my.cnf
         'OPTIONS': {
-            'init_command': "SET default_storage_engine=INNODB, tx_isolation='READ-COMMITTED'",  #<default_>storage_engine
+            'init_command': "SET default_storage_engine=INNODB, tx_isolation='READ-COMMITTED', character_set_database='utf8' ",  #<default_>storage_engine
         }
     }
 }

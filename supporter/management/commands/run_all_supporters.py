@@ -23,9 +23,10 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('action', type=str)
 
-    def handle_quit(self):
+    def handle_quit(self, signum, frame): # these two parameters must be included. Or this method may not be executed.
         logger.info('handle quit signal')
         self.is_stop = True
+        os.system("echo %s > %s" % ('quit signal received', PathConst.DAEMON_LOG))
 
     def start(self):
         with daemon.DaemonContext():
@@ -34,7 +35,7 @@ class Command(BaseCommand):
             logger.info('Daemon pid is %s' % os.getpid())
             os.system("echo %d > %s" % (os.getpid(), PathConst.SUPPORTERS_DAEMON_PID))
 
-            signal.signal(signal.SIGQUIT, self.handle_quit)
+            signal.signal(signal.SIGTERM, self.handle_quit)
 
             #os.system("python /home/anshun/python/django_site/manage.py students_supporter")
             child = subprocess.Popen(['python', os.path.join(settings.BASE_DIR, 'manage.py'), 'students_supporter'])
@@ -42,6 +43,8 @@ class Command(BaseCommand):
 
             while not self.is_stop:
                 time.sleep(60*60)
+
+            os.system("echo %s > %s" % ('begin terminate subprocess', PathConst.DAEMON_LOG))
 
             for child in self.children:
                 #A None value indicates that the process hasn't terminated yet.
@@ -55,10 +58,10 @@ class Command(BaseCommand):
 
     def stop(self):
         if os.path.exists(PathConst.SUPPORTERS_DAEMON_PID):
-            with open(PathConst.SUPPORTERS_DAEMON_PID, 'r') as file:
-                pid = int(file.read())
-                os.kill(pid, signal.SIGQUIT)
-
+            with open(PathConst.SUPPORTERS_DAEMON_PID, 'r') as f:
+                pid = int(f.read())
+                logger.info('stop pid %d' % pid)
+                os.kill(pid, signal.SIGTERM)
 
     def handle(self, *args, **options):
         if options['action'] == 'start':
