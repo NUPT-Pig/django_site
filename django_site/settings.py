@@ -107,8 +107,8 @@ DATABASES = {
         'NAME': 'test',  # (create database test) in mysql
         'USER': 'root',  #username of mysql
         'PASSWORD': 'root',  #password of mysql
-        'HOST': '10.64.66.63',  # remote ip
-        'PORT': '3306',  # remote port , find it from /etc/mysql/my.cnf
+        'HOST': '',  # remote ip
+        'PORT': '',  # remote port , find it from /etc/mysql/my.cnf
         'OPTIONS': {
             'init_command': "SET default_storage_engine=INNODB, tx_isolation='READ-COMMITTED', character_set_database='utf8' ",  #<default_>storage_engine
         }
