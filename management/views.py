@@ -40,3 +40,14 @@ class LogoutView(APIView):
         response.delete_cookie('random_string')
         return response
 
+class RegisterView(APIView):
+    authentication_classes = ()
+    permission_classes = ()
+
+    def post(self, request):
+        username = request.data.get('username', None)
+        password = request.data.get('password', None)
+        logger.info('%s register' % username)
+        user = User(username=username)
+        user.set_password(password)
+        user.save()
