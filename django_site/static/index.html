@@ -5,8 +5,8 @@
         <title>创未来</title>
         <link rel="stylesheet" href="third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/screen.css">
-        <script src="third-party/jquery/jquery-3.2.1.min.js"></script>
-        <script src="third-party/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        <script src="third-party/jquery/jquery-3.2.1.js"></script>
+        <script src="third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
         <script>
             $(document).ready(function(){
@@ -16,7 +16,7 @@
                     $.each(x, function(i, field){
                         JsonData[field.name] = field.value;
                     });
-                    $.post("/test", JsonData)
+                    $.post("management/login/",JsonData);
                 });
             });
         </script>
@@ -132,8 +132,8 @@
                               </div>
                               <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                  <button id="LaunchButton" type="submit" class="btn btn-default">登录</button>
-                                    <button type="submit" class="btn btn-default">注册</button>
+                                  <button id="LaunchButton" type="button" class="btn btn-default">登录</button>
+                                    <button type="button" class="btn btn-default">注册</button>
                                 </div>
                               </div>
                             </form>
