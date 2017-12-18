@@ -51,3 +51,4 @@ class RegisterView(APIView):
         user = User(username=username)
         user.set_password(password)
         user.save()
+        return Response(status=status.HTTP_200_OK)
