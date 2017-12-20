@@ -30,8 +30,10 @@ class LoginView(APIView):
             response = Response(status=status.HTTP_200_OK)
             if Teacher.objects.filter(user=user).exists():
                 response.set_cookie('role', 'teacher', None, None, '/', None, False, False)
+                response.set_cookie('id', user.teacher.id, None, None, '/', None, False, False)
             else:
                 response.set_cookie('role', 'student', None, None, '/', None, True, False)
+                response.set_cookie('role', user.student.id, None, None, '/', None, True, False)
             return response
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)

@@ -24,7 +24,7 @@
                             {
                                 $("#homepage").attr("href", "homepage/teacher.html")
                             }
-                            
+
                         }
                     });
                 });
@@ -39,7 +39,9 @@
                     $.each(x, function(i, field){
                         JsonData[field.name] = field.value;
                     });
-                    $.post("management/register/", JsonData)
+                    $.post("management/register/", JsonData, function(data, status){
+                        if (status == "success") {alert("注册成功，请登录！")}
+                    });
                 });
             });
         </script>
@@ -76,7 +78,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a href="#">首页</a></li>
-                <li><a id="homepage" href="#">个人主页</a></li>
+                <li>
+                    <a id="homepage" href="#">个人主页</a>
+                    <script>
+                        var role = Cookies.get("role");
+                        if (role == "teacher") { $("#homepage").attr("href", "homepage/teacher.html")}
+                    </script>
+                </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">学科<span class="caret"></span></a>
                   <ul class="dropdown-menu">

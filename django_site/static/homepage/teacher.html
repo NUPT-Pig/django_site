@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../css/screen.css">
         <script src="../third-party/jquery/jquery-3.2.1.js"></script>
         <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+        <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
     </head>
 
     <body>
@@ -33,11 +34,18 @@
                             <th>部门：</th>
                             <td id="department">计算机</td>
                             <th>职位：</th>
-                            <td id="job">教师</td>
+                            <td id="position">教师</td>
                         </tr>
                         <script>
-                            $.post("");
-                            $("#name").text("anshun_zhu");
+                            var id = Cookies.get("id");
+                            $.getJSON("../teachers/detail/" + id + "/", function (data, status) {
+                                if (status == 'success'){
+                                    $("#name").text(data.username);
+                                    $("#id").text(data.employee_id);
+                                    $("#department").text(data.department);
+                                    $("#position").text(data.position);
+                                }
+                            });;
                         </script>
                     </table>
                 </div>
