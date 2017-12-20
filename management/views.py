@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-# Create your views here.
+
+from teachers.models import Teacher
+from students.models import Student
 
 from common_interface.log_interface import get_logger
 logger = get_logger()
@@ -26,7 +28,10 @@ class LoginView(APIView):
         if user is not None:
             login(request, user)
             response = Response(status=status.HTTP_200_OK)
-            response.set_cookie('random_string', '12345', None, None, '/', None, True, False)
+            if Teacher.objects.filter(user=user).exists():
+                response.set_cookie('role', 'teacher', None, None, '/', None, False, False)
+            else:
+                response.set_cookie('role', 'student', None, None, '/', None, True, False)
             return response
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
@@ -47,8 +52,16 @@ class RegisterView(APIView):
     def post(self, request):
         username = request.data.get('username', None)
         password = request.data.get('password', None)
+        role = request.data.get('role', None)
         logger.info('%s register' % username)
+        if User.objects.filter(username=username).exists():
+            logger.error('%s already exist.' % username)
+            return Response(status=status.HTTP_409_CONFLICT)
         user = User(username=username)
         user.set_password(password)
         user.save()
+        if role == "teacher":
+            Teacher.objects.create(user=user)
+        elif role == "student":
+            Student.objects.create(user=user)
         return Response(status=status.HTTP_200_OK)
