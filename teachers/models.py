@@ -10,11 +10,15 @@ class Teacher(models.Model):
     employee_id = models.CharField(max_length=6, default="000000")
     gender = models.BooleanField(default=False) #false->male true->female
     DEPARTMENT = (
+        ('UN', 'undefined'),
         ('CS', 'Computer Science'),
         ('PHY', 'Physics'),
     )
-    department = models.CharField(max_length=10, choices=DEPARTMENT, default='CS')
+    department = models.CharField(max_length=10, choices=DEPARTMENT, default='UN')
     POSITION = (
+        ('UN', 'undefined'),
         ('TE', 'teacher'),
     )
-    position = models.CharField(max_length=10, choices=POSITION, default='TE')
+    position = models.CharField(max_length=10, choices=POSITION, default='UN')
+    phone_number = models.CharField(max_length=11, default="")
+    email = models.EmailField(default="")

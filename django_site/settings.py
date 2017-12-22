@@ -72,8 +72,10 @@ REST_FRAMEWORK = {
         #'rest_framework.permissions.IsAuthenticated', #just allow user in db
         'common_interface.restframework_middleware_interface.TestPermissions',  # check self defined permissions
     ),
-    'PAGINATE_BY': 20,
-    'PAGINATE_BY_PARAM': 'page_size',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    #'PAGINATE_BY': 20,
+    #'PAGINATE_BY_PARAM': 'page_size',
+    'PAGE_SIZE': 3,
     'FILTER_BACKEND': 'rest_framework.filters.DjangoFilterBackend',
 }
 

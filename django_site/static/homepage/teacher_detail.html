@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>详细信息</title>
+    <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/screen.css">
+    <script src="../third-party/jquery/jquery-3.2.1.js"></script>
+    <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
+    <script src="../third-party/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+    <script src="../js/paginator.js"></script>
+</head>
+<body>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td>工号：</td>
+                <td id="employee_id"></td>
+            </tr>
+            <tr>
+                <td>姓名：</td>
+                <td id="name"></td>
+            </tr>
+            <tr>
+                <td>部门：</td>
+                <td id="department"></td>
+            </tr>
+            <tr>
+                <td>职位：</td>
+                <td id="position"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var de_dict = new Array();
+        de_dict["UN"] = "未录入";
+        de_dict["CS"] = "计算机";
+        de_dict["PHY"] = "物理";
+
+        var po_dict = new Array();
+        po_dict["UN"] = "未录入";
+        po_dict["TE"] = "教师";
+        var teacher_id = $(".detail_clicked", window.opener.document).attr("id");
+        $(".detail_clicked", window.opener.document).attr("class", "un_clicked");
+        var teacher_url = "../teachers/detail/" + teacher_id + "/";
+        $.getJSON(teacher_url, function(data, status) {
+            if(status == "success"){
+                $("#name").text(data.username);
+                $("#employee_id").text(data.employee_id);
+                $("#department").text(de_dict[data.department]);
+                $("#position").text(po_dict[data.position]);
+            }
+        });
+    </script>
+</body>
+</html>

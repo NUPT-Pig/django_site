@@ -8,6 +8,8 @@
         <script src="../third-party/jquery/jquery-3.2.1.js"></script>
         <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
         <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
+        <script src="../third-party/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+        <script src="../js/paginator.js"></script>
     </head>
 
     <body>
@@ -28,7 +30,7 @@
                             <th>姓名：</th>
                             <td id="name"></td>
                             <th>工号：</th>
-                            <td id="id">1111111111</td>
+                            <td id="employee_id">1111111111</td>
                         </tr>
                         <tr>
                             <th>部门：</th>
@@ -36,19 +38,100 @@
                             <th>职位：</th>
                             <td id="position">教师</td>
                         </tr>
+                        <tr>
+                            <th>电话：</th>
+                            <td colspan="3">
+                                <input id="phone_number" placeholder="025-888888" readonly>
+                                <button class="btn-info btn-xs" id="phone_number_modify">修改</button>
+                                <button class="btn-success btn-xs" id="phone_number_submit">提交</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>邮箱：</th>
+                            <td colspan="3">
+                                <input id="email" placeholder="a@a.com" readonly>
+                                <button class="btn-info btn-xs" id="email_modify">修改</button>
+                                <button class="btn-success btn-xs" id="email_submit">提交</button>
+                            </td>
+                        </tr>
+                        <script src="../js/modify_info.js"></script>
                         <script>
                             var id = Cookies.get("id");
+                            var de_dict = new Array();
+                            de_dict["UN"] = "未录入";
+                            de_dict["CS"] = "计算机";
+                            de_dict["PHY"] = "物理";
+                            var po_dict = new Array();
+                            po_dict["UN"] = "未录入";
+                            po_dict["TE"] = "教师";
                             $.getJSON("../teachers/detail/" + id + "/", function (data, status) {
                                 if (status == 'success'){
                                     $("#name").text(data.username);
-                                    $("#id").text(data.employee_id);
-                                    $("#department").text(data.department);
-                                    $("#position").text(data.position);
+                                    $("#employee_id").text(data.employee_id);
+                                    $("#department").text(de_dict[data.department]);
+                                    $("#position").text(po_dict[data.position]);
+                                    $("#phone_number").val(data.phone_number);
+                                    $("#email").val(data.email)
                                 }
-                            });;
+                            });
                         </script>
                     </table>
                 </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ul id="teacherTab" class="nav nav-tabs navbar-right">
+                <li class="active">
+                    <a href="#task" data-toggle="tab">任务</a>
+                </li>
+                <li>
+                    <a href="#teammates" data-toggle="tab">同事</a>
+                </li>
+                <li>
+                    <a href="#students" data-toggle="tab">学生</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="teacherTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="task">
+                <div class="container">
+                    <table id="task_table" class="table table-bordered table-striped">
+                        <tr>
+                            <th>序号</th>
+                            <th>任务名</th>
+                            <th>参与者</th>
+                            <th>汇报给</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-offset-9" style="text-align: right"> <ul id="task_paginator"></ul> </div>
+                <script>
+                    task_paginator($("#task_paginator"))
+                </script>
+            </div>
+            <div class="tab-pane fade" id="teammates">
+                <div class="container">
+                    <table id="teammate_table" class="table table-bordered table-hover">
+                        <tr class="dynamic_tr_head">
+                            <th hidden>序号</th>
+                            <th>工号</th>
+                            <th>姓名</th>
+                            <th>部门</th>
+                            <th>职位</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-offset-9" style="text-align: right"> <ul id="teammate_paginator"></ul> </div>
+                <script>
+                    teammate_paginator($("#teammate_paginator"), $("#teammate_table"))
+                </script>
+            </div>
+            <div class="tab-pane fade" id="students">
+                <p>wo de xue sheng</p>
             </div>
         </div>
     </body>
