@@ -47,6 +47,7 @@ class LogoutView(APIView):
         response.delete_cookie('random_string')
         return response
 
+
 class RegisterView(APIView):
     authentication_classes = ()
     permission_classes = ()
@@ -56,14 +57,18 @@ class RegisterView(APIView):
         password = request.data.get('password', None)
         role = request.data.get('role', None)
         logger.info('%s register' % username)
-        if User.objects.filter(username=username).exists():
-            logger.error('%s already exist.' % username)
-            return Response(status=status.HTTP_409_CONFLICT)
-        user = User(username=username)
-        user.set_password(password)
-        user.save()
-        if role == "teacher":
-            Teacher.objects.create(user=user)
-        elif role == "student":
-            Student.objects.create(user=user)
+        try:
+            if User.objects.filter(username=username).exists():
+                logger.error('%s already exist.' % username)
+                return Response(status=status.HTTP_409_CONFLICT)
+            user = User(username=username)
+            user.set_password(password)
+            user.save()
+            if role == "teacher":
+                Teacher.objects.create(user=user)
+            elif role == "student":
+                Student.objects.create(user=user)
+        except Exception as e:
+            print e
+
         return Response(status=status.HTTP_200_OK)
