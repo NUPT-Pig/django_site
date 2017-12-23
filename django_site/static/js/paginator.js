@@ -4,6 +4,8 @@
 
 var max_len = 3;
 
+var base_teacher_url = "../teachers/";
+
 var de_dict = new Array();
 de_dict["UN"] = "未录入";
 de_dict["CS"] = "计算机";
@@ -62,7 +64,7 @@ function teammate_paginator(element_paginator, element_table) {
         //    return "../" + "teachers/" + "?page=" + page
         //},
         onPageClicked: function(e, originalEvent, type, page) {
-            $.getJSON("../teachers/?page=" + page, function(data, status){
+            $.getJSON(base_teacher_url + "?page=" + page, function(data, status){
                 if(status == "success"){
                     $("tr").remove(".dynamic_tr_content");
                     add_teachers(element_table, data);
@@ -70,7 +72,7 @@ function teammate_paginator(element_paginator, element_table) {
             });
         }
     };
-    $.getJSON("../teachers/", function(data, status){
+    $.getJSON(base_teacher_url, function(data, status){
         if (status == "success") {
             options["totalPages"] = Math.ceil(data.count/max_len);
             if (options["totalPages"] <= 5) {

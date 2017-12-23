@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'teachers',
     'supporter',
     'upload_files',
+    'tasks',
 ]
 
 MIDDLEWARE = [
