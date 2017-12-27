@@ -27,7 +27,7 @@ settings里面的USER和PASSWORD为root账户的用户名和密码 测试安装�
 # mysql存储中文出错
 * 报错信息：1267, "Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='"
 * django 1.10 auth_user username python2 只可以 英文  python3 可以支持 Unicode 可修
-[参考文章](http://blog.csdn.net/wujingwen1111/article/details/12652819)
+* [参考文章](http://blog.csdn.net/wujingwen1111/article/details/12652819)
 ## 1查看字符编码方法小结
 ```
 SHOW VARIABLES LIKE 'character_set_%';
