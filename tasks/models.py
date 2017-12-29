@@ -9,8 +9,8 @@ from teachers.models import Teacher
 
 
 class Task(models.Model):
-    managers = models.ManyToManyField(Teacher, null=True, blank=True, related_name='managers')
-    executors = models.ManyToManyField(Teacher, null=True, blank=True, related_name='executors')
+    managers = models.ManyToManyField(Teacher, null=True, blank=True, related_name='managerTasks')
+    executors = models.ManyToManyField(Teacher, null=True, blank=True, related_name='executorTasks')
     name = models.CharField(max_length=64, default="UNDEFINED")
     LEVEL = (
         (0, "normal"),
@@ -20,6 +20,6 @@ class Task(models.Model):
     level = models.IntegerField(choices=LEVEL, default=0)
     is_finished = models.BooleanField(default=False)
     comment = models.TextField(null=True)
-    begin_time = models.TimeField(null=True)
-    finish_time = models.TimeField(null=True)
-    close_time = models.TimeField(null=True)
+    begin_time = models.DateField(null=True)
+    finish_time = models.DateField(null=True)
+    close_time = models.DateTimeField(null=True)

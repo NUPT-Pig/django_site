@@ -96,21 +96,25 @@
 
         <div id="teacherTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="task">
-                <div class="container">
-                    <table id="task_table" class="table table-bordered table-striped">
+                <div class="container checkbox ">
+                    <table id="task_table" class="table table-bordered table-striped ">
                         <tr>
-                            <th>序号</th>
+                            <th hidden>序号</th>
                             <th>任务名</th>
                             <th>参与者</th>
                             <th>汇报给</th>
                             <th>结束时间</th>
                             <th>等级</th>
+                            <th>
+                                <button type="button" class="btn-success btn-xs" onclick="add_task()">+</button>
+                                <button type="button" class="btn-danger btn-xs" onclick="delete_task()">-</button>
+                            </th>
                         </tr>
                     </table>
                 </div>
                 <div class="col-md-offset-9" style="text-align: right"> <ul id="task_paginator"></ul> </div>
                 <script>
-                    task_paginator($("#task_paginator"))
+                    task_paginator($("#task_paginator"), $("#task_table"))
                 </script>
             </div>
             <div class="tab-pane fade" id="teammates">
