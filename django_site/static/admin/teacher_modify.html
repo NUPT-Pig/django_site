@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>修改教师信息</title>
+    <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="../third-party/jquery/jquery-3.2.1.js"></script>
+    <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <tr>
+            <td id="db_id" hidden></td>
+        </tr>
+        <tr>
+            <td>工号：</td>
+            <td><input id="employee_id"></td>
+        </tr>
+        <tr>
+            <td>姓名：</td>
+            <td><input id="name"></td>
+        </tr>
+        <tr>
+            <td>部门：</td>
+            <td>
+                <select id="department">
+                    <option value="UN">未定义</option>
+                    <option value="CS">计算机</option>
+                    <option value="PHY">物理</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>职位：</td>
+            <td>
+                <select id="position">
+                    <option value="UN">未定义</option>
+                    <option value="TE">教师</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button id="submit_teacher_admin">提交</button>
+</div>
+
+<script>
+    var teacher_id = $(".teacher_clicked_admin", window.opener.document).text();
+    $(".teacher_clicked_admin", window.opener.document).attr("class", "teacher_unclicked_admin");
+    var teacher_url = "../teachers/detail/" + teacher_id + "/";
+    $("#db_id").text(teacher_id);
+    $.getJSON(teacher_url, function(data, status) {
+        if(status == "success"){
+            $("#name").val(data.username);
+            $("#employee_id").val(data.employee_id);
+            $("#department").val(data.department);
+            $("#position").val(data.position);
+        }
+    });
+</script>
+
+<script>
+    $("#submit_teacher_admin").click(function(){
+        json_data = {
+            "username" : $("#name").val(),
+            "employee_id" : $("#employee_id").val(),
+            "department" : $("#department").find("option:selected").val(),
+            "position" : $("#position").find("option:selected").val()
+        };
+    $.ajax({
+            url: "../teachers/detail/" + $("#db_id").text() +"/",
+            type: "put",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(json_data),
+            success: function(result, status){},
+            statusCode: {
+                200: function(){
+                    alert('提交成功');
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

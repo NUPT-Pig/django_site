@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>管理员</title>
+    <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="../third-party/jquery/jquery-3.2.1.js"></script>
+    <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../third-party/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+    <script src="../js/admin.js"></script>
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-pills nav-tabs navbar-inverse">
+        <li role="presentation" class="active"><a href="#teacher" data-toggle="tab">教师</a></li>
+        <li role="presentation"><a href="#task" data-toggle="tab">任务</a></li>
+        <li role="presentation"><a href="#student" data-toggle="tab">学生</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="teacher">
+        <table id="teacher_table" class="table">
+            <tr>
+                <th>序号</th>
+                <th>工号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>部门</th>
+                <th>职位</th>
+            </tr>
+        </table>
+        <div class="col-md-offset-9" style="text-align: right"> <ul id="teacher_paginator_admin"></ul> </div>
+        <script>
+            refresh_teachers()
+        </script>
+    </div>
+    <div class="tab-pane fade" id="task">task</div>
+    <div class="tab-pane fade" id="student">student</div>
+</div>
+</body>
+</html>
