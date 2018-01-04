@@ -41,7 +41,8 @@
             </td>
         </tr>
     </table>
-    <button id="submit_teacher_admin">提交</button>
+    <button id="submit_teacher_admin" class="btn-success">提交</button>
+    <button id="delete_teacher_admin" class="btn-danger">删除</button>
 </div>
 
 <script>
@@ -77,6 +78,22 @@
             statusCode: {
                 200: function(){
                     alert('提交成功');
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+    $("#delete_teacher_admin").click(function(){
+        $.ajax({
+            url: "../teachers/detail/" + $("#db_id").text() + "/",
+            type: "delete",
+            contentType: "application/json",
+            dataType: "json",
+            statusCode: {
+                204: function(){
+                    alert('删除成功');
                 }
             }
         });

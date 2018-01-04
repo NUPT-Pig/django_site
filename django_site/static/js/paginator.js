@@ -34,7 +34,7 @@ function add_teacher_td(element_tr, show_data) {
 function add_teachers(element_table, response_data) {
     $.each(response_data.results, function(){
                 var tr_id = "teacher_tr_" + this.id;
-                element_table.append("<tr class='dynamic_tr_content'" + "id=" + tr_id +"></tr>");
+                element_table.append("<tr class='dynamic_tr_teacher'" + "id=" + tr_id +"></tr>");
                 add_teacher_td($("#"+tr_id), this);
             });
 }
@@ -71,7 +71,7 @@ function add_tasks(element_table, response_data) {
             2 : "danger"
         };
         $tr.attr("id", tr_id);
-        $tr.attr("class", "dynamic_tr_content " + level_dict[this.level]);
+        $tr.attr("class", "dynamic_tr_task " + level_dict[this.level]);
         element_table.append($tr);
         add_task_td($tr, this);
     });
@@ -89,7 +89,7 @@ function task_paginator(element_paginator, element_table) {
         onPageClicked: function(e, originalEvent, type, page) {
             $.getJSON(base_task_url + "?page=" + page + "&teacher_id=" + teacher_id, function(data, status){
                 if (status == "success") {
-                    $("tr").remove(".dynamic_tr_content");
+                    $("tr").remove(".dynamic_tr_task");
                     add_tasks(element_table, data);
                 }
             });
@@ -121,7 +121,7 @@ function teammate_paginator(element_paginator, element_table) {
         onPageClicked: function(e, originalEvent, type, page) {
             $.getJSON(base_teacher_url + "?page=" + page, function(data, status){
                 if(status == "success"){
-                    $("tr").remove(".dynamic_tr_content");
+                    $("tr").remove(".dynamic_tr_teacher");
                     add_teachers(element_table, data);
                 }
             });

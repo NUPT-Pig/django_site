@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from tasks.models import Task
+from teachers.models import Teacher
 from tasks.serializers import TaskListSerializer, TaskDetailSerializer, TaskCreateSerializer
 
 # Create your views here.
@@ -21,7 +22,9 @@ class TasksView(generics.ListAPIView):
     def get_queryset(self):
         teacher_id = self.request.query_params.get("teacher_id", None)
         if teacher_id is not None:
-            return Task.objects.filter(Q(managers__in=[3]) | Q(executors__in=[3])).distinct()
+            teacher = Teacher.objects.get(id=teacher_id)
+            return list(set(teacher.managerTasks.all()).union(set(teacher.executorTasks.all())))
+            #return Task.objects.filter(Q(managers__in=[teacher_id]) | Q(executors__in=[teacher_id])).distinct()
         else:
             return self.queryset
 
