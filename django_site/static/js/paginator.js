@@ -47,8 +47,6 @@ function add_task_td(element_tr, show_data) {
     $a.text(show_data.name);
     $td.append($a);
     element_tr.append($td);
-    element_tr.append("<td>" + show_data.executor_names +"</td>");
-    element_tr.append("<td>" + show_data.manager_names +"</td>");
     element_tr.append("<td>" + show_data.finish_time +"</td>");
     element_tr.append("<td>" + show_data.level +"</td>");
     var $input = $("<input type='checkbox' value='' class='for_task_delete'>");

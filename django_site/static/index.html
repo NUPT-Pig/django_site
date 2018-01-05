@@ -19,11 +19,7 @@
                     });
                     $.post("management/login/", JsonData, function(data, status){
                         if (status == "success"){
-                            var role = Cookies.get("role");
-                            if (role == "teacher")
-                            {
-                                $("#homepage").attr("href", "homepage/teacher.html")
-                            }
+                            $("#username").text(Cookies.get("employeeId"));
                             alert("登录成功！");
                         }
                     });
@@ -78,14 +74,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a href="#">首页</a></li>
-                <li>
-                    <a id="homepage" href="#">个人主页</a>
-                    <script>
-                        var role = Cookies.get("role");
-                        if (role == "teacher") { $("#homepage").attr("href", "homepage/teacher.html")}
-                    </script>
-                </li>
-                  <li><a>任务管理</a></li>
+                <li><a id="homepage" href="./homepage/teacher.html">个人主页</a></li>
+                  <li><a href="./task/task.html">任务管理</a></li>
                   <li><a>学生管理</a></li>
                   <li><a>生活助理</a></li>
                   <li class="dropdown">
@@ -99,12 +89,18 @@
                   </ul>
                 </li>
               </ul>
-              <form class="navbar-form navbar-right">
-                  <div class="input-group">
-                      <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">搜索</button>
-                      </span>
-                      <input type="text" class="form-control" placeholder="内容">
+              <form class="navbar-right">
+                  <div class="btn-group">
+                      <button id="username" type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        游客 <span class="caret"></span>
+                          <script>
+                              var employee_id = Cookies.get("employeeId");
+                              if (employee_id != undefined) {$("#username").text(Cookies.get("employeeId"));}
+                          </script>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>修改密码</a></li>
+                      </ul>
                   </div>
               </form>
             </div><!-- /.navbar-collapse -->

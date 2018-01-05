@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>任务管理</title>
+    <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/screen.css">
+    <script src="../third-party/jquery/jquery-3.2.1.js"></script>
+    <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
+    <script src="../third-party/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+    <script src="../js/paginator.js"></script>
+</head>
+<body>
+    <!--公司logo-->
+    <header class="main-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <img src="" alt="公司logo">
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--导航栏-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">创未来</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">首页</a></li>
+            <li><a id="homepage" href="../homepage/teacher.html">个人主页</a></li>
+              <li><a href="#">任务管理</a></li>
+              <li><a>学生管理</a></li>
+              <li><a>生活助理</a></li>
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司文化<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">公司简介</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">公司规章</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">部门职责</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-right">
+              <div class="btn-group">
+                  <button id="username" type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    游客 <span class="caret"></span>
+                      <script>
+                          var employee_id = Cookies.get("employeeId");
+                          if (employee_id != undefined) {$("#username").text(Cookies.get("employeeId"));}
+                      </script>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>修改密码</a></li>
+                  </ul>
+              </div>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <table id="task_table" class="table table-bordered table-striped ">
+                    <tr>
+                        <th hidden>序号</th>
+                        <th>任务名</th>
+                        <th>结束时间</th>
+                        <th>等级</th>
+                        <th>
+                            <button type="button" class="btn-success btn-xs" onclick="add_task()">+</button>
+                            <button type="button" class="btn-danger btn-xs" onclick="delete_task()">-</button>
+                        </th>
+                    </tr>
+                </table>
+                <div class="col-md-offset-9" style="text-align: right"> <ul id="task_paginator"></ul> </div>
+                <script>
+                    task_paginator($("#task_paginator"), $("#task_table"))
+                </script>
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-offset-4">
+                        <div class="form-group">
+                            <input type="text" class="input-lg" id="task_name_id" placeholder="Task_name">
+                            <select id="select_level" class="btn-warning">
+                                <option value="0">普通</option>
+                                <option value="1">中等</option>
+                                <option value="2">重要</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group" id="add_manager">
+                            <label for="check_manager_id">添加汇报者</label>
+                            <input type="text"  id="check_manager_id" placeholder="姓名">
+                            <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加(双击姓名删除)</span>
+                            <button class="btn-xs btn-info" id="check_manager_bt">+</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group" id="add_executor">
+                            <label for="check_executor_id">添加参与者</label>
+                            <input type="text"  id="check_executor_id" placeholder="姓名">
+                            <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加(双击姓名删除)</span>
+                            <button class="btn-xs btn-info" id="check_executor_bt">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="finish_time_id">完成时间</label>
+                    <input type="date" value="2018-01-01" id="finish_time_id">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

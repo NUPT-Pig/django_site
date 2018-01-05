@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 
 from django.shortcuts import render
@@ -29,7 +30,7 @@ class LoginView(APIView):
             login(request, user)
             response = Response(status=status.HTTP_200_OK)
             if Teacher.objects.filter(user=user).exists():
-                response.set_cookie('role', 'teacher', None, None, '/', None, False, False)
+                response.set_cookie('employeeId', user.teacher.employee_id, None, None, '/', None, False, False)
                 response.set_cookie('id', user.teacher.id, None, None, '/', None, False, False)
             else:
                 response.set_cookie('role', 'student', None, None, '/', None, True, False)
