@@ -34,7 +34,7 @@
         <script>
             $(document).ready(function(){
                 $("#RegisterButton").click(function(){
-                    var x=$("#LaunchForm").serializeArray();
+                    var x=$("#RegisterForm").serializeArray();
                     var JsonData={};
                     $.each(x, function(i, field){
                         JsonData[field.name] = field.value;
@@ -85,14 +85,17 @@
                         if (role == "teacher") { $("#homepage").attr("href", "homepage/teacher.html")}
                     </script>
                 </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">学科<span class="caret"></span></a>
+                  <li><a>任务管理</a></li>
+                  <li><a>学生管理</a></li>
+                  <li><a>生活助理</a></li>
+                  <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司文化<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">计算机</a></li>
+                    <li><a href="#">公司简介</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">物理</a></li>
+                    <li><a href="#">公司规章</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">其它</a></li>
+                    <li><a href="#">部门职责</a></li>
                   </ul>
                 </li>
               </ul>
@@ -138,46 +141,52 @@
                     <aside class="col-md-4 sidebar">
                         <!--登录与注册-->
                         <div class="widget">
-                            <h4 class="title">登录与注册</h4>
-                            <form id="LaunchForm" class="form-horizontal">
-                              <div class="form-group">
-                                <label for="UserName" class="col-sm-4 control-label">登录名</label>
-                                <div class="col-sm-8">
-                                  <input type="username" class="form-control" id="UserName" placeholder="Anshun_Zhu" name="username">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="InputPassword" class="col-sm-4 control-label">密码</label>
-                                <div class="col-sm-8">
-                                  <input type="password" class="form-control" id="InputPassword" placeholder="Password" name="password">
-                                </div>
-                              </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-9">
-                                        <div class="radio-inline">
-                                            <lable><input type="radio" name="role" value="teacher" checked>教师</lable>
+                            <div class="container">
+                                <ul id="login_register_tab" class="nav nav-tabs navbar-left">
+                                    <li class="active">
+                                        <a href="#login" data-toggle="tab">登录</a>
+                                    </li>
+                                    <li>
+                                        <a href="#register" data-toggle="tab">注册</a>
+                                    </li>
+                                </ul>
+                            </div>
+                           <div id="login_register_content" class="tab-content">
+                                <div class="tab-pane fade in active" id="login">
+                                    <form id="LaunchForm">
+                                        <div class="form-group">
+                                            <label for="username_login">姓名</label>
+                                            <input type="text" class="form-control" id="username_login" name="username" placeholder="username">
                                         </div>
-                                        <div class="radio-inline">
-                                            <lable><input type="radio" name="role" value="student">学生</lable>
+                                        <div class="form-group">
+                                            <label for="password_login">密码</label>
+                                            <input type="password" class="form-control" id="password_login" name="password" placeholder="password">
                                         </div>
-                                    </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-1">
+                                              <button id="LaunchButton" type="button" class="btn-success">登录</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                              <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                  <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox"> Remember me
-                                    </label>
-                                  </div>
+                                <div class="tab-pane fade" id="register">
+                                    <form id="RegisterForm">
+                                        <div class="form-group">
+                                            <label for="username_login">姓名</label>
+                                            <input type="text" class="form-control" id="username_login" name="username" placeholder="username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password_login">密码</label>
+                                            <input type="password" class="form-control" id="password_login" name="password" placeholder="password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-1">
+                                              <button id="RegisterButton" type="button" class="btn-info">注册</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                  <button id="LaunchButton" type="button" class="btn btn-default">登录</button>
-                                    <button id="RegisterButton" type="button" class="btn btn-default">注册</button>
-                                </div>
-                              </div>
-                            </form>
+                           </div>
                         </div>
                     </aside>
                 </div>
