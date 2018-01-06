@@ -20,9 +20,12 @@ class TasksView(generics.ListAPIView):
     serializer_class = TaskListSerializer
 
     def get_queryset(self):
-        teacher_id = self.request.query_params.get("teacher_id", None)
-        if teacher_id is not None:
-            teacher = Teacher.objects.get(id=teacher_id)
+        employee_id = self.request.query_params.get("employee_id", None)
+        if self.request.user.teacher.employee_id != employee_id :
+            #avoid people searching others' tasks
+            return None
+        if employee_id is not None:
+            teacher = Teacher.objects.get(employee_id=employee_id)
             return list(set(teacher.managerTasks.all()).union(set(teacher.executorTasks.all())))
             #return Task.objects.filter(Q(managers__in=[teacher_id]) | Q(executors__in=[teacher_id])).distinct()
         else:
@@ -41,6 +44,7 @@ class TaskCreateView(generics.CreateAPIView):
 class TaskDestroyView(APIView):
 
     def delete(self, request):
+        # @todo only managers can delete tasks
         task_ids = request.data.get("task_ids")
         Task.objects.filter(id__in=task_ids).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
