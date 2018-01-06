@@ -781,3 +781,9 @@ pre {
     line-height: 30px;
     width: 30px;
 }
+.main-background {
+    background: #8B98AB;
+}
+.secondary-background {
+    background: antiquewhite;
+}
