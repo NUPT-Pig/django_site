@@ -74,7 +74,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a href="#">首页</a></li>
-                <li><a id="homepage" href="./homepage/teacher.html">个人主页</a></li>
                   <li><a href="./task/task.html">任务管理</a></li>
                   <li><a>学生管理</a></li>
                   <li><a>生活助理</a></li>
@@ -92,14 +91,11 @@
               <form class="navbar-right">
                   <div class="btn-group">
                       <button id="username" type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        游客 <span class="caret"></span>
-                          <script>
-                              var employee_id = Cookies.get("employeeId");
-                              if (employee_id != undefined) {$("#username").text(Cookies.get("employeeId"));}
-                          </script>
+                          <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>修改密码</a></li>
+                          <li><a id="homepage" href="./homepage/teacher.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>个人主页</a></li>
+                          <li><a href="#"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>修改密码</a></li>
                       </ul>
                   </div>
               </form>

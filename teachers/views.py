@@ -16,7 +16,6 @@ class TeachersView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         teacher_name = self.request.query_params.get("teacher_name", None)
-        print teacher_name
         if teacher_name is not None:
             return Teacher.objects.filter(user__username__contains=teacher_name)
         else:
@@ -26,3 +25,10 @@ class TeachersView(generics.ListCreateAPIView):
 class TeachersDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherDetailSerializer
+
+
+class MyDetailView(generics.RetrieveAPIView):
+    serializer_class = TeacherDetailSerializer
+
+    def get_object(self):
+        return self.request.user.teacher

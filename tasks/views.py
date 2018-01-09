@@ -20,12 +20,9 @@ class TasksView(generics.ListAPIView):
     serializer_class = TaskListSerializer
 
     def get_queryset(self):
-        employee_id = self.request.query_params.get("employee_id", None)
-        if self.request.user.teacher.employee_id != employee_id :
-            #avoid people searching others' tasks
-            return None
-        if employee_id is not None:
-            teacher = Teacher.objects.get(employee_id=employee_id)
+        user = self.request.user
+        if not user.is_superuser:
+            teacher = user.teacher
             return list(set(teacher.managerTasks.all()).union(set(teacher.executorTasks.all())))
             #return Task.objects.filter(Q(managers__in=[teacher_id]) | Q(executors__in=[teacher_id])).distinct()
         else:
