@@ -38,3 +38,20 @@ class TeacherDetailSerializer(serializers.ModelSerializer):
         except Exception as e:
             logger.error(str(e))
         return username
+
+
+class TeachersSimpleSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField("get_user_name")
+
+    class Meta:
+        model = Teacher
+        fields = ('id', 'username')
+
+    def get_user_name(self, obj):
+        username = ""
+        try:
+            if obj.user:
+                username = obj.user.username
+        except Exception as e:
+            logger.error(str(e))
+        return username

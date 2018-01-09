@@ -1,11 +1,41 @@
 var max_len = 3;
 
 var base_task_url = "../tasks/";
+var detail_task_url = base_task_url + 'detail/';
+var base_teacher_url = "../teachers/";
+
+function task_detail(e) {
+    var taskId = e.id;
+    $.getJSON(detail_task_url + taskId + '/', function(data, status){
+        if (status == 'success') {
+            $(".to_server").remove();
+            $("#task_name_id").val(data.name);
+            $("#select_level").val(data.level);
+            $("#finish_time_id").val(data.finish_time);
+            $.each(data.manager_names, function(){
+                var $btn = $("<button></button>");
+                $btn.text(this.name);
+                $btn.attr('id', this.id);
+                $btn.attr('class', 'to_server btn-success');
+                $btn.dblclick(function(){$(this).remove()});
+                $("#add_manager").append($btn);
+            });
+            $.each(data.executor_names, function(){
+                var $btn = $("<button></button>");
+                $btn.text(this.name);
+                $btn.attr('id', this.id);
+                $btn.attr('class', 'to_server btn-success');
+                $btn.dblclick(function(){$(this).remove()});
+                $("#add_executor").append($btn);
+            });
+        }
+    });
+}
 
 function add_task_td(element_tr, show_data) {
     element_tr.append("<td hidden>" + show_data.id +"</td>");
     var $td=$("<td></td>");
-    var $a=$("<a class='un_clicked'></a>");
+    var $a=$("<a onclick='task_detail(this)'></a>");
     $a.attr("id", show_data.id);
     $a.text(show_data.name);
     $td.append($a);

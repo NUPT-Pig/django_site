@@ -4,8 +4,11 @@
 
 var base_teacher_url = "../teachers/";
 var base_task_url = "../tasks/create/";
+var check_teacher_url = base_teacher_url + 'check/';
+
+
 $("#check_manager_bt").click(function(){
-    var url = base_teacher_url + "?teacher_name=" + $("#check_manager_id").val();
+    var url = check_teacher_url + "?teacher_name=" + $("#check_manager_id").val();
     $.getJSON(url, function(data, status){
         if(status == "success"){
             $.each(data.results, function(){
@@ -13,6 +16,7 @@ $("#check_manager_bt").click(function(){
                 $btn.text(this.username);
                 $btn.attr('id', this.id);
                 $btn.attr('class', 'to_server btn-success');
+                $btn.dblclick(function(){$(this).remove()});
                 $("#add_manager").append($btn);
             });
         }
@@ -20,7 +24,7 @@ $("#check_manager_bt").click(function(){
 });
 
 $("#check_executor_bt").click(function(){
-    var url = base_teacher_url + "?teacher_name=" + $("#check_executor_id").val();
+    var url = check_teacher_url + "?teacher_name=" + $("#check_executor_id").val();
     $.getJSON(url, function(data, status){
         if(status == "success"){
             $.each(data.results, function () {
@@ -28,6 +32,7 @@ $("#check_executor_bt").click(function(){
                 $btn.text(this.username);
                 $btn.attr('id', this.id);
                 $btn.attr('class', 'to_server btn-success');
+                $btn.dblclick(function(){$(this).remove()});
                 $("#add_executor").append($btn);
             })
         }
