@@ -94,6 +94,7 @@
                     <div class="col-sm-offset-4">
                         <div class="form-group">
                             <input type="text" class="input-lg" id="task_name_id" placeholder="Task_name">
+                            <input type="text" id="task_id" hidden>
                             <select id="select_level" class="btn-warning">
                                 <option value="0">普通</option>
                                 <option value="1">中等</option>
@@ -124,6 +125,9 @@
                 <div>
                     <label for="finish_time_id">完成时间</label>
                     <input type="date" value="2018-01-01" id="finish_time_id">
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-10"><button id="submit-modify-task">提交修改</button></div>
                 </div>
             </div>
         </div>

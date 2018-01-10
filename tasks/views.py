@@ -47,8 +47,6 @@ class TaskDestroyView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskDetailSerializer
-

@@ -3,7 +3,9 @@
  */
 
 var base_teacher_url = "../teachers/";
-var base_task_url = "../tasks/create/";
+var base_task_url = "../tasks/";
+var create_task_url = base_task_url + "create/";
+var detail_task_url = base_task_url + "detail/";
 var check_teacher_url = base_teacher_url + 'check/';
 
 
@@ -56,7 +58,7 @@ $("#submit_add_task").click(function(){
         "finish_time" : $("#finish_time_id").val()
     };
     $.ajax({
-            url: base_task_url,
+            url: create_task_url,
             type: "post",
             contentType: "application/json",
             dataType: "json",
@@ -65,6 +67,38 @@ $("#submit_add_task").click(function(){
             statusCode: {
                 201: function(){
                     alert('提交成功');
+                }
+            }
+        });
+});
+
+$("#submit-modify-task").click(function(){
+    var manager_ids = [];
+    $.each($("#add_manager").children(".to_server"), function(){
+        manager_ids.push(Number(this.id));
+    });
+    var executor_ids = [];
+    $.each($("#add_executor").children(".to_server"), function(){
+        executor_ids.push(Number(this.id));
+    });
+    json_data = {
+        "name" : $("#task_name_id").val(),
+        "managers" : manager_ids,
+        "executors" : executor_ids,
+        "level" : $("#add_level").find("option:selected").val(),
+        "finish_time" : $("#finish_time_id").val()
+    };
+    $.ajaxSetup({headers: {"X-CSRFToken": Cookies.get('csrftoken')}});
+    $.ajax({
+            url: detail_task_url + $("#task_id").val() +"/",
+            type: "put",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(json_data),
+            success: function(result, status){},
+            statusCode: {
+                200: function(){
+                    alert('修改成功');
                 }
             }
         });

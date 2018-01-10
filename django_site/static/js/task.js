@@ -8,6 +8,7 @@ function task_detail(e) {
     var taskId = e.id;
     $.getJSON(detail_task_url + taskId + '/', function(data, status){
         if (status == 'success') {
+            $("#task_id").val(taskId);
             $(".to_server").remove();
             $("#task_name_id").val(data.name);
             $("#select_level").val(data.level);
