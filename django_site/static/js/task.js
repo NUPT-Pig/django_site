@@ -1,7 +1,8 @@
-var max_len = 3;
+var max_len = 10;
 
 var base_task_url = "../tasks/";
 var detail_task_url = base_task_url + 'detail/';
+var delete_task_url = base_task_url + 'delete/';
 var base_teacher_url = "../teachers/";
 
 function task_detail(e) {
@@ -13,13 +14,14 @@ function task_detail(e) {
             $("#task_name_id").val(data.name);
             $("#select_level").val(data.level);
             $("#finish_time_id").val(data.finish_time);
+            $("#comment_id").val(data.comment);
             $.each(data.manager_names, function(){
                 var $btn = $("<button></button>");
                 $btn.text(this.name);
                 $btn.attr('id', this.id);
                 $btn.attr('class', 'to_server btn-success');
                 $btn.dblclick(function(){$(this).remove()});
-                $("#add_manager").append($btn);
+                $("#manager_list").append($btn);
             });
             $.each(data.executor_names, function(){
                 var $btn = $("<button></button>");
@@ -27,7 +29,7 @@ function task_detail(e) {
                 $btn.attr('id', this.id);
                 $btn.attr('class', 'to_server btn-success');
                 $btn.dblclick(function(){$(this).remove()});
-                $("#add_executor").append($btn);
+                $("#executor_list").append($btn);
             });
         }
     });
@@ -116,6 +118,7 @@ function delete_task(){
             url: delete_task_url,
             type: "delete",
             contentType: "application/json",
+            headers: {"X-CSRFToken": Cookies.get('csrftoken')},
             dataType: "json",
             data: JSON.stringify(json_data),
             success: function(result, status){},

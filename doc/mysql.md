@@ -87,5 +87,5 @@ mysql --default-character-set=utf8 -u root -p
 ```
 ALTER DATABASE `test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ALTER TABLE `category` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
-ALTER TABLE `test` CHANGE `dd` `dd` VARCHAR( 45 ) CHARACTER SET utf8 COLLATE utf8_general_ci
+ALTER TABLE `test` CHANGE `dd` `dd` VARCHAR(45) CHARACTER SET utf8 COLLATE utf8_general_ci
 ```

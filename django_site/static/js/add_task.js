@@ -19,7 +19,7 @@ $("#check_manager_bt").click(function(){
                 $btn.attr('id', this.id);
                 $btn.attr('class', 'to_server btn-success');
                 $btn.dblclick(function(){$(this).remove()});
-                $("#add_manager").append($btn);
+                $("#manager_list").append($btn);
             });
         }
     });
@@ -35,7 +35,7 @@ $("#check_executor_bt").click(function(){
                 $btn.attr('id', this.id);
                 $btn.attr('class', 'to_server btn-success');
                 $btn.dblclick(function(){$(this).remove()});
-                $("#add_executor").append($btn);
+                $("#executor_list").append($btn);
             })
         }
     });
@@ -43,11 +43,11 @@ $("#check_executor_bt").click(function(){
 
 $("#submit_add_task").click(function(){
     var manager_ids = [];
-    $.each($("#add_manager").children(".to_server"), function(){
+    $.each($("#manager_list").children(".to_server"), function(){
         manager_ids.push(Number(this.id));
     });
     var executor_ids = [];
-    $.each($("#add_executor").children(".to_server"), function(){
+    $.each($("#executor_list").children(".to_server"), function(){
         executor_ids.push(Number(this.id));
     });
     json_data = {
@@ -61,6 +61,7 @@ $("#submit_add_task").click(function(){
             url: create_task_url,
             type: "post",
             contentType: "application/json",
+            headers: {"X-CSRFToken": Cookies.get('csrftoken')},
             dataType: "json",
             data: JSON.stringify(json_data),
             success: function(result, status){},
@@ -74,11 +75,11 @@ $("#submit_add_task").click(function(){
 
 $("#submit-modify-task").click(function(){
     var manager_ids = [];
-    $.each($("#add_manager").children(".to_server"), function(){
+    $.each($("#manager_list").children(".to_server"), function(){
         manager_ids.push(Number(this.id));
     });
     var executor_ids = [];
-    $.each($("#add_executor").children(".to_server"), function(){
+    $.each($("#executor_list").children(".to_server"), function(){
         executor_ids.push(Number(this.id));
     });
     json_data = {
@@ -86,14 +87,16 @@ $("#submit-modify-task").click(function(){
         "managers" : manager_ids,
         "executors" : executor_ids,
         "level" : $("#add_level").find("option:selected").val(),
-        "finish_time" : $("#finish_time_id").val()
+        "finish_time" : $("#finish_time_id").val(),
+        "comment" : $("#comment_id").val()
     };
-    $.ajaxSetup({headers: {"X-CSRFToken": Cookies.get('csrftoken')}});
+    //$.ajaxSetup({headers: {"X-CSRFToken": Cookies.get('csrftoken')}});
     $.ajax({
             url: detail_task_url + $("#task_id").val() +"/",
             type: "put",
             contentType: "application/json",
             dataType: "json",
+            headers: {"X-CSRFToken": Cookies.get('csrftoken')},
             data: JSON.stringify(json_data),
             success: function(result, status){},
             statusCode: {

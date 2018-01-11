@@ -90,9 +90,10 @@
                 </script>
             </div>
             <div class="col-sm-7 secondary-background">
+                <hr/>
                 <div class="row">
                     <div class="col-sm-offset-4">
-                        <div class="form-group">
+                        <div class="form-group" id="add_level">
                             <input type="text" class="input-lg" id="task_name_id" placeholder="Task_name">
                             <input type="text" id="task_id" hidden>
                             <select id="select_level" class="btn-warning">
@@ -103,30 +104,38 @@
                         </div>
                     </div>
                 </div>
+                <hr/>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group" id="add_manager">
+                            <div id="manager_list"><h3>汇报者</h3></div>
+                            <button class="btn-xs btn-info" id="check_manager_bt">+</button>
                             <label for="check_manager_id">添加汇报者</label>
                             <input type="text"  id="check_manager_id" placeholder="姓名">
                             <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加(双击姓名删除)</span>
-                            <button class="btn-xs btn-info" id="check_manager_bt">+</button>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group" id="add_executor">
+                            <div id="executor_list"><h3>参与者</h3></div>
+                            <button class="btn-xs btn-info" id="check_executor_bt">+</button>
                             <label for="check_executor_id">添加参与者</label>
                             <input type="text"  id="check_executor_id" placeholder="姓名">
                             <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加(双击姓名删除)</span>
-                            <button class="btn-xs btn-info" id="check_executor_bt">+</button>
                         </div>
                     </div>
                 </div>
-
+                <hr/>
                 <div>
                     <label for="finish_time_id">完成时间</label>
                     <input type="date" value="2018-01-01" id="finish_time_id">
                 </div>
-                <div class="row">
+                <hr/>
+                <div>
+                    <label for="comment_id">注释</label>
+                    <textarea type="text" class="form-control" id="comment_id" placeholder="comment"></textarea>
+                </div>
+                <div>
                     <div class="col-sm-offset-10"><button id="submit-modify-task">提交修改</button></div>
                 </div>
             </div>

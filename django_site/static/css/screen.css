@@ -28,6 +28,9 @@ h5 {
 h6 {
     font-size: 0.75em;
 }
+hr {
+    color: #990073;
+}
 a {
     color: #ff0f5c;
     outline: medium none;
@@ -357,7 +360,7 @@ pre {
     color: #666665;
     text-decoration: none;
 }
-.post-content hr {
+.post-content {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -785,5 +788,5 @@ pre {
     background: #8B98AB;
 }
 .secondary-background {
-    background: antiquewhite;
+    background: #d869fa;
 }

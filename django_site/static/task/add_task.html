@@ -15,18 +15,23 @@
             <label for="task_name">任务名</label>
             <input type="text" id="task_name_id" placeholder="Task_name">
         </div>
+        <hr/>
         <div class="form-group" id="add_manager">
+            <div id="manager_list"><h3>汇报者</h3></div>
+            <button class="btn-xs btn-info" id="check_manager_bt">+</button>
             <label for="check_manager_id">添加汇报者</label>
             <input type="text"  id="check_manager_id" placeholder="姓名">
-            <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加</span>
-            <button class="btn-xs btn-info" id="check_manager_bt">+</button>
+            <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加(双击姓名删除)</span>
         </div>
+        <hr/>
         <div class="form-group" id="add_executor">
+            <div id="executor_list"><h3>参与者</h3></div>
+            <button class="btn-xs btn-info" id="check_executor_bt">+</button>
             <label for="check_executor_id">添加参与者</label>
             <input type="text"  id="check_executor_id" placeholder="姓名">
-            <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加</span>
-            <button class="btn-xs btn-info" id="check_executor_bt">+</button>
+            <span id="helpBlock" class="help-block">填写姓名并点击添加按钮添加(双击姓名删除)</span>
         </div>
+        <hr/>
         <div class="form-group" id="add_level">
             <label for="select_level">选择等级</label>
             <select id="select_level" class="btn-warning">
@@ -35,10 +40,12 @@
               <option value="2">重要</option>
             </select>
         </div>
+        <hr/>
         <div>
             <label for="finish_time_id">完成时间</label>
             <input type="date" value="2018-01-01" id="finish_time_id">
         </div>
+        <hr/>
       <button type="button" class="btn btn-primary" id="submit_add_task">提交</button>
         <script src="../js/add_task.js"></script>
     </body>

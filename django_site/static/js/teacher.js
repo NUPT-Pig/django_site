@@ -2,7 +2,7 @@
  * Created by anshun on 17-12-21.
  */
 
-var max_len = 3;
+var max_len = 10;
 
 var base_teacher_url = "../teachers/";
 var delete_task_url = base_task_url + "delete/";
