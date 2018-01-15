@@ -34,7 +34,7 @@ class TaskCreateView(generics.CreateAPIView):
     serializer_class = TaskCreateSerializer
 
     def post(self, request, *args, **kwargs):
-        print request.data
+        print (request.data)
         return self.create(request, *args, **kwargs)
 
 

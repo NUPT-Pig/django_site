@@ -9,8 +9,8 @@ from teachers.models import Teacher
 
 
 class Task(models.Model):
-    managers = models.ManyToManyField(Teacher, null=True, blank=True, related_name='managerTasks')
-    executors = models.ManyToManyField(Teacher, null=True, blank=True, related_name='executorTasks')
+    managers = models.ManyToManyField(Teacher, blank=True, related_name='managerTasks')
+    executors = models.ManyToManyField(Teacher, blank=True, related_name='executorTasks')
     name = models.CharField(max_length=64, default="UNDEFINED")
     LEVEL = (
         (0, "normal"),

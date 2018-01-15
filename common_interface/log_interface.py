@@ -4,7 +4,7 @@ from django.conf import settings
 from common_interface.const import PathConst
 
 def get_logger(name='general'):
-    if not settings.LOGGING['loggers'].has_key(name):
+    if not name in settings.LOGGING['loggers']:
         settings.LOGGING['handlers'][name] = {
                                 'level':'DEBUG',
                                 'class':'logging.handlers.RotatingFileHandler',
