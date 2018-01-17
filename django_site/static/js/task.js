@@ -15,6 +15,7 @@ function task_detail(e) {
             $("#select_level").val(data.level);
             $("#finish_time_id").val(data.finish_time);
             $("#comment_id").val(data.comment);
+            $("#begin_time_id").val(data.begin_time);
             $.each(data.manager_names, function(){
                 var $btn = $("<button></button>");
                 $btn.text(this.name);

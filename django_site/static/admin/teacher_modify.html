@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <script src="../third-party/jquery/jquery-3.2.1.js"></script>
     <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
 </head>
 <body>
 <div class="container">
@@ -73,6 +74,7 @@
             type: "put",
             contentType: "application/json",
             dataType: "json",
+            headers: {"X-CSRFToken": Cookies.get('csrftoken')},
             data: JSON.stringify(json_data),
             success: function(result, status){},
             statusCode: {
@@ -91,6 +93,7 @@
             type: "delete",
             contentType: "application/json",
             dataType: "json",
+            headers: {"X-CSRFToken": Cookies.get('csrftoken')},
             statusCode: {
                 204: function(){
                     alert('删除成功');

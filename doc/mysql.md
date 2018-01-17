@@ -4,7 +4,8 @@
 3. 在mysql中创建新的数据库
 ```create database test```
 4. 在 django.settings 里面配置mysql的连接
-5. 将configuration里面的my.conf拷贝到 /etc/mysql/ 下（添加了中文支持）
+5. 将configuration里面的my.conf拷贝到 /etc/mysql/ 下（添加了中文utf-8支持); ubuntu下具体参考mysql存储中文出错 
+第3小节
 # 远程连接
 1. settings 设置 database 远程的 ip 和 port
 2. 远程的mysql服务器*/etc/mysql/my.conf*注释掉```bind-address = 127.0.0.1```
@@ -69,13 +70,19 @@ ALTER TABLE auth_user CHANGE username username VARCHAR(150) CHARACTER SET utf8 C
 
 ## 3避免出错方法
 这只是修BUG，如何确保不出现这种情况，可以在配置mysql上就更改：
+路径可能不一样，本系统的路径在/etc/mysql/mysql.conf.d/mysqld.cnf下，只要找到[mysqld]就行。
 ```
 vi /etc/my.cnf
+
+[client]
+default-character-set=utf8
 
 [mysqld]
 datadir=/var/lib/mysql
 socket=/var/lib/mysql/mysql.sock
-default-character-set=utf8
+#default-character-set=utf8
+character-set-server=utf8
+collation-server=utf8_general_ci
 ```
 然后重启数据库
 

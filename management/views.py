@@ -55,7 +55,6 @@ class RegisterView(APIView):
     def post(self, request):
         username = request.data.get('username', None)
         password = request.data.get('password', None)
-        role = request.data.get('role', None)
         logger.info('%s register' % username)
         try:
             if User.objects.filter(username=username).exists():
@@ -64,10 +63,7 @@ class RegisterView(APIView):
             user = User(username=username)
             user.set_password(password)
             user.save()
-            if role == "teacher":
-                Teacher.objects.create(user=user)
-            elif role == "student":
-                Student.objects.create(user=user)
+            Teacher.objects.create(user=user)
         except Exception as e:
             print (e)
 
