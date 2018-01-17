@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
+
 from django.shortcuts import render
 from django.db.models import Q
 
@@ -33,9 +35,10 @@ class TaskCreateView(generics.CreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskCreateSerializer
 
-    def post(self, request, *args, **kwargs):
-        print (request.data)
-        return self.create(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        obj = serializer.save()
+        obj.begin_time = datetime.datetime.now().strftime("%Y-%m-%d")
+        obj.save()
 
 
 class TaskDestroyView(APIView):

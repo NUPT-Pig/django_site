@@ -87,8 +87,10 @@ $("#submit-modify-task").click(function(){
         "managers" : manager_ids,
         "executors" : executor_ids,
         "level" : $("#add_level").find("option:selected").val(),
+        "begin_time" : $("#begin_time_id").val(),
         "finish_time" : $("#finish_time_id").val(),
-        "comment" : $("#comment_id").val()
+        "comment" : $("#comment_id").val(),
+        "status" : $("#add_status").find("option:selected").val(),
     };
     //$.ajaxSetup({headers: {"X-CSRFToken": Cookies.get('csrftoken')}});
     $.ajax({

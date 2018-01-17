@@ -13,6 +13,7 @@ function task_detail(e) {
             $(".to_server").remove();
             $("#task_name_id").val(data.name);
             $("#select_level").val(data.level);
+            $("#select_status").val(data.status);
             $("#finish_time_id").val(data.finish_time);
             $("#comment_id").val(data.comment);
             $("#begin_time_id").val(data.begin_time);
@@ -37,6 +38,11 @@ function task_detail(e) {
 }
 
 function add_task_td(element_tr, show_data) {
+    var status_dict = {
+        0 : "执行",
+        1 : "审核",
+        2 : "完成",
+    };
     element_tr.append("<td hidden>" + show_data.id +"</td>");
     var $td=$("<td></td>");
     var $a=$("<a onclick='task_detail(this)'></a>");
@@ -45,7 +51,7 @@ function add_task_td(element_tr, show_data) {
     $td.append($a);
     element_tr.append($td);
     element_tr.append("<td>" + show_data.finish_time +"</td>");
-    element_tr.append("<td>" + show_data.level +"</td>");
+    element_tr.append("<td>" + status_dict[show_data.status] +"</td>");
     var $input = $("<input type='checkbox' value='' class='for_task_delete'>");
     $input.attr("id", show_data.id);
     var $div = $("<table></table>");

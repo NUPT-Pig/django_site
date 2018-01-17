@@ -18,7 +18,12 @@ class Task(models.Model):
         (2, "important"),
     )
     level = models.IntegerField(choices=LEVEL, default=0)
-    is_finished = models.BooleanField(default=False)
+    STATUS = (
+        (0, 'executing'),
+        (1, 'checking'),
+        (2, 'finished'),
+    )
+    status = models.IntegerField(choices=STATUS, default=0)
     comment = models.TextField(null=True, blank=True)
     create_time = models.DateTimeField(null=True, auto_now_add=True)
     begin_time = models.DateField(null=True)

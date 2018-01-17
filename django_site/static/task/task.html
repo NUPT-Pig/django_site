@@ -128,11 +128,18 @@
                 <hr/>
                 <div>
                     <label for="begin_time_id">开始时间</label>
-                    <input type="datetime-local" id="begin_time_id">
+                    <input type="date" value="2018-01-01" id="begin_time_id">
                 </div>
                 <div>
                     <label for="finish_time_id">完成时间</label>
                     <input type="date" value="2018-01-01" id="finish_time_id">
+                </div>
+                <div id="add_status">
+                    <select id="select_status" class="btn-danger">
+                        <option value="0">执行</option>
+                        <option value="1">审核</option>
+                        <option value="2">完成</option>
+                    </select>
                 </div>
                 <hr/>
                 <div>
