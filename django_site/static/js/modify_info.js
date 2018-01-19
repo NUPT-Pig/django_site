@@ -15,9 +15,10 @@ $("#email_modify").click(function(){
 $("#phone_number_submit").click(function(){
     var json_data = {"phone_number": $("#phone_number").val()}
     $.ajax({
-        url: "../teachers/detail/" + id + "/",
+        url: "../teachers/MyDetail/",
         type: "put",
         contentType: "application/json",
+        headers: {"X-CSRFToken": Cookies.get('csrftoken')},
         dataType: "json",
         data: JSON.stringify(json_data),
         success: function(result, status){},
@@ -32,9 +33,10 @@ $("#phone_number_submit").click(function(){
 $("#email_submit").click(function(){
     var json_data = {"email": $("#email").val()}
     $.ajax({
-        url: "../teachers/detail/" + id + "/",
+        url: "../teachers/MyDetail/",
         type: "put",
         contentType: "application/json",
+        headers: {"X-CSRFToken": Cookies.get('csrftoken')},
         dataType: "json",
         data: JSON.stringify(json_data),
         success: function(result, status){},

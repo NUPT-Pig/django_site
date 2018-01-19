@@ -20,7 +20,7 @@ class TeachersDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TeacherDetailSerializer
 
 
-class MyDetailView(generics.RetrieveAPIView):
+class MyDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TeacherDetailSerializer
 
     def get_object(self):

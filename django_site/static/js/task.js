@@ -38,10 +38,10 @@ function task_detail(e) {
 }
 
 function add_task_td(element_tr, show_data) {
-    var status_dict = {
-        0 : "执行",
-        1 : "审核",
-        2 : "完成",
+    var level_dict = {
+        0 : "普通",
+        1 : "中等",
+        2 : "重要",
     };
     element_tr.append("<td hidden>" + show_data.id +"</td>");
     var $td=$("<td></td>");
@@ -51,7 +51,7 @@ function add_task_td(element_tr, show_data) {
     $td.append($a);
     element_tr.append($td);
     element_tr.append("<td>" + show_data.finish_time +"</td>");
-    element_tr.append("<td>" + status_dict[show_data.status] +"</td>");
+    element_tr.append("<td>" + level_dict[show_data.level] +"</td>");
     var $input = $("<input type='checkbox' value='' class='for_task_delete'>");
     $input.attr("id", show_data.id);
     var $div = $("<table></table>");
@@ -66,13 +66,13 @@ function add_tasks(element_table, response_data) {
     $.each(response_data.results, function() {
         var tr_id = "task_tr_" + this.id;
         var $tr = $("<tr></tr>");
-        var level_dict = {
-            0 : "info",
+        var status_dict = {
+            0 : "danger",
             1 : "warning",
-            2 : "danger"
+            2 : "success"
         };
         $tr.attr("id", tr_id);
-        $tr.attr("class", "dynamic_tr_task " + level_dict[this.level]);
+        $tr.attr("class", "dynamic_tr_task " + status_dict[this.status]);
         element_table.append($tr);
         add_task_td($tr, this);
     });
