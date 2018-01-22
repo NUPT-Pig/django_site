@@ -68,3 +68,18 @@ class RegisterView(APIView):
             print (e)
 
         return Response(status=status.HTTP_200_OK)
+
+
+class ChangePasswordView(APIView):
+
+    def post(self, request):
+        try:
+            new_password = request.data.get('new_password')
+            if new_password is not None:
+                request.user.set_password(new_password)
+                request.user.save()
+        except Exception as e:
+            logger.error('change password error : %s' % e)
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(status=status.HTTP_200_OK)
+
