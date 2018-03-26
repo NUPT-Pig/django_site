@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^tasks/', include('tasks.urls')),
     url(r'^management/', include('management.urls')),
     url(r'upload_files/', include('upload_files.urls')),
+    url(r'helpers/', include('helper.urls'))
 ]
 
 
