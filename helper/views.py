@@ -17,10 +17,10 @@ class AccountView(generics.ListCreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        if response.status_code == status.HTTP_201_CREATED:
-            obj = self.get_object()
-            obj.user = request.user
+    def perform_create(self, serializer):
+        try:
+            obj = serializer.save()
+            obj.user = self.request.user
             obj.save()
-        return response
+        except Exception as e:
+            print (e)

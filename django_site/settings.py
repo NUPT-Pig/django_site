@@ -195,7 +195,7 @@ LOGGING = {
     },
 }
 
-SESSION_COOKIE_AGE=60*15
-#SESSION_SAVE_EVERY_REQUEST=True
-#SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+#SESSION_COOKIE_AGE=60*30
+SESSION_SAVE_EVERY_REQUEST=True
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 SESSION_COOKIE_SECURE = False # @todo must set True before usage for the difference of http and https.(http->false https->true)

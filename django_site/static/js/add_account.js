@@ -1,17 +1,24 @@
 
 
 $("#account-submit").click(function(){
-    var json_data = {"phone_number": $("#phone_number").val()}
+    var money = $("#account_money").val();
+    var money1 = money
+    var option = "存入";
+    if (money <= 0) {alert('金额不合法'); return 0;}
+    if ($("#account_option").find("option:selected").val() === '0') {money = -money; option = "支出";}
+    var json_data = {"money": money, "comment": $("#account_comment").val(), "date": $("#account_date").val()};
+    var result = confirm(option + " : " + money1);
+    if (result === false) {return 0;}
     $.ajax({
-        url: "../teachers/MyDetail/",
-        type: "put",
+        url: "../helpers/add_account/",
+        type: "post",
         contentType: "application/json",
         headers: {"X-CSRFToken": Cookies.get('csrftoken')},
         dataType: "json",
         data: JSON.stringify(json_data),
         success: function(result, status){},
         statusCode: {
-            200: function(){
+            201: function(){
                 alert('提交成功');
             }
         }

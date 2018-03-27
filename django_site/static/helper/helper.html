@@ -76,24 +76,29 @@
                     <th>流动方式</th>
                     <th>金额</th>
                     <th>备注</th>
+                    <th>日期</th>
                     <th>操作</th>
                 </tr>
                 <tr>
                     <td>
-                        <select class="btn-info">
+                        <select class="btn-info" id="account_option">
                             <option value="0">支出</option>
                             <option value="1">存入</option>
                         </select>
                     </td>
                     <td>
-                        <input value="0">
+                        <input value="0" id="account_money">
                     </td>
                     <td>
-                        <textarea type="text" placeholder="comment"></textarea>
+                        <textarea type="text" placeholder="comment" id="account_comment"></textarea>
+                    </td>
+                    <td>
+                        <input type="date" value="" id="account_date">
                     </td>
                     <td>
                         <button class="btn-success" id="account-submit">提交</button>
                     </td>
+
                 </tr>
             </table>
         </div>
