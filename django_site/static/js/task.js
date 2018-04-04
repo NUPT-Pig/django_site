@@ -1,4 +1,4 @@
-var max_len = 10;
+var max_len = 20;
 
 var base_task_url = "../tasks/";
 var detail_task_url = base_task_url + 'detail/';
@@ -87,7 +87,7 @@ function task_paginator(element_paginator, element_table) {
         alignment:"right",
         numberOfPages:5,
         onPageClicked: function(e, originalEvent, type, page) {
-            $.getJSON(base_task_url + "?page=" + page, function(data, status){
+            $.getJSON(base_task_url + "?page=" + page + "&page_size=" + max_len, function(data, status){
                 if (status == "success") {
                     $("tr").remove(".dynamic_tr_task");
                     add_tasks(element_table, data);
@@ -95,7 +95,7 @@ function task_paginator(element_paginator, element_table) {
             });
         }
     };
-    $.getJSON(base_task_url, function(data, status){
+    $.getJSON(base_task_url + "page_size", function(data, status){
         if (status == "success") {
             options["totalPages"] = Math.ceil(data.count/max_len);
             if (options["totalPages"] <= 5) {

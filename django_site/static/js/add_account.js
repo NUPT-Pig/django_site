@@ -18,7 +18,7 @@ $("#account-submit").click(function(){
     formData.append("account_detail", JSON.stringify(json_data));
 
     $.ajax({
-        url: "../helpers/add_account/",
+        url: "../helpers/account/",
         // url: "../helpers/test/",
         type: "post",
         // contentType: "application/json",

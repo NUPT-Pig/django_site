@@ -4,38 +4,61 @@
     <meta charset="utf-8">
     <title>管理员</title>
     <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
     <script src="../third-party/jquery/jquery-3.2.1.js"></script>
     <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <script src="../third-party/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
     <script src="../js/admin.js"></script>
+    <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
 </head>
-<body>
-<div class="container">
-    <ul class="nav nav-pills nav-tabs navbar-inverse">
-        <li role="presentation" class="active"><a href="#teacher" data-toggle="tab">教师</a></li>
-        <li role="presentation"><a href="#task" data-toggle="tab">任务</a></li>
-        <li role="presentation"><a href="#student" data-toggle="tab">学生</a></li>
-    </ul>
-</div>
-<div class="tab-content">
-    <div class="tab-pane fade in active" id="teacher">
-        <table id="teacher_table" class="table">
-            <tr>
-                <th>序号</th>
-                <th>工号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>部门</th>
-                <th>职位</th>
-            </tr>
-        </table>
-        <div class="col-md-offset-9" style="text-align: right"> <ul id="teacher_paginator_admin"></ul> </div>
-        <script>
-            refresh_teachers()
-        </script>
+<body  style="background: #5bb75b">
+    <div class="container login">
+        <div class="row"  style="background: #9B859D">
+            <div class="col-sm-offset-3">
+                <h3 style="color: slateblue">管理员权限申请</h3>
+            </div>
+        </div>
+        <div class="row center-block">
+            <div class="form-group">
+                <label for="username">管理员帐号</label>
+                <input class="form-control" id="username" type="text">
+            </div>
+            <div class="form-group">
+                <label for="password">管理员密码</label>
+                <input type="password" id="password" class="form-control">
+            </div>
+            <button id="submit_id" type="submit" class="btn btn-default">登录</button>
+        </div>
     </div>
-    <div class="tab-pane fade" id="task">task</div>
-    <div class="tab-pane fade" id="student">student</div>
-</div>
+
+    <script>
+        $("#submit_id").click(function(){
+            var json_data = {
+                "username": $("#username").val(),
+                "password": $("#password").val()
+            };
+            $.ajax({
+            url: "../management/login/",
+            type: "post",
+            contentType: "application/json",
+            headers: {"X-CSRFToken": Cookies.get('csrftoken')},
+            dataType: "json",
+            data: JSON.stringify(json_data),
+            success: function(result, status){
+                if (result === true) {
+                    window.location.href="./main.html";
+                }else
+                {
+                    alert("对不起，您不是管理员");
+                }
+            },
+            statusCode: {
+                200: function(){
+
+                }
+            }
+        });
+        });
+    </script>
 </body>
 </html>

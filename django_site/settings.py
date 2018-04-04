@@ -77,7 +77,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     #'PAGINATE_BY': 20,
     #'PAGINATE_BY_PARAM': 'page_size',
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 20,
     'FILTER_BACKEND': 'rest_framework.filters.DjangoFilterBackend',
 }
 
@@ -157,6 +157,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'django_site/static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'django_site/media/')
 

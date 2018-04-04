@@ -8,13 +8,13 @@ from rest_framework.response import Response
 from rest_framework import generics, status
 
 from helper.models import Account
-from helper.serializers import AccountSerializer
+from helper.serializers import AccountSerializer, AccountDetailSerializer
 
 # Create your views here.
 
 
 class AccountView(generics.ListCreateAPIView):
-    queryset = Account.objects.all()
+    queryset = Account.objects.all().order_by("date")
     serializer_class = AccountSerializer
 
     def create(self, request, *args, **kwargs):
@@ -35,6 +35,11 @@ class AccountView(generics.ListCreateAPIView):
             obj.save()
         except Exception as e:
             print (e)
+
+
+class AccountDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
 
 
 class TestView(APIView):

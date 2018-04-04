@@ -2,9 +2,29 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>账本</title>
+    <title>账单</title>
+    <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../third-party/jquery/jquery-3.2.1.js"></script>
+    <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../third-party/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+    <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
 </head>
 <body>
-
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered" id="account_table">
+                <tr>
+                    <th>数据库编号</th>
+                    <th>时间</th>
+                    <th>金额</th>
+                    <th>员工</th>
+                </tr>
+            </table>
+            <div class="col-md-offset-5" style="text-align: right"> <ul id="account_paginator"></ul> </div>
+            <script src="../js/admin_account.js"></script>
+            <script>refresh_account()</script>
+        </div>
+    </div>
 </body>
 </html>

@@ -28,7 +28,7 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            response = Response(status=status.HTTP_200_OK)
+            response = Response(status=status.HTTP_200_OK, data=user.is_superuser)
             #if Teacher.objects.filter(user=user).exists():
             #    response.set_cookie('username', user.username, None, None, '/', None, False, False)
             #else:
@@ -62,6 +62,8 @@ class RegisterView(APIView):
                 return Response(status=status.HTTP_409_CONFLICT)
             user = User(username=username)
             user.set_password(password)
+            if username == "admin":
+                user.is_superuser = True
             user.save()
             Teacher.objects.create(user=user)
         except Exception as e:

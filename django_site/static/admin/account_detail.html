@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../third-party/jquery/jquery-3.2.1.js"></script>
+    <script src="../third-party/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="../third-party/bootstrap-paginator-master/src/bootstrap-paginator.js"></script>
+    <script src="../third-party/jquery/js-cookie-1.5.1/src/js.cookie.js"></script>
+    <title>账单详情</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <input class="hidden" id="account_id">
+            <h3>时间</h3>
+            <input type="date" id="account_date">
+            <br/>
+            <h3>金额</h3>
+            <input type="text" id="account_money">
+            <br/>
+            <h3>员工</h3>
+            <input type="text" id="account_username">
+            <br/>
+            <h3>备注</h3>
+            <textarea type="text" placeholder="comment" id="account_comment"></textarea>
+            <br/>
+            <a id="account_file_href" target="_blank"><img src="" alt="附件" width="200px" height="300px" id="account_file"></a>
+            <br/>
+            <button class="btn-info" id="account_check">审核</button>
+            <button class="btn-warning" id="account_modify">修改</button>
+            <button class="btn-danger" id="account_delete">删除</button>
+        </div>
+    </div>
+    <script src="../js/admin_account_detail.js"></script>
+    <script>load_account()</script>
+</body>
+</html>
