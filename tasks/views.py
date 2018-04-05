@@ -22,13 +22,16 @@ class TasksView(generics.ListAPIView):
     serializer_class = TaskListSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        if not user.is_superuser:
-            teacher = user.teacher
-            return list(set(teacher.managerTasks.all()).union(set(teacher.executorTasks.all())))
-            #return Task.objects.filter(Q(managers__in=[teacher_id]) | Q(executors__in=[teacher_id])).distinct()
-        else:
-            return self.queryset
+        try:
+            user = self.request.user
+            if not user.is_superuser:
+                teacher = user.teacher
+                return list(set(teacher.managerTasks.all()).union(set(teacher.executorTasks.all())))
+                #return Task.objects.filter(Q(managers__in=[teacher_id]) | Q(executors__in=[teacher_id])).distinct()
+            else:
+                return self.queryset
+        except Exception as e:
+            print (e)
 
 
 class TaskCreateView(generics.CreateAPIView):

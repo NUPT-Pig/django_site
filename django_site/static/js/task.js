@@ -95,7 +95,7 @@ function task_paginator(element_paginator, element_table) {
             });
         }
     };
-    $.getJSON(base_task_url + "page_size", function(data, status){
+    $.getJSON(base_task_url, function(data, status){
         if (status == "success") {
             options["totalPages"] = Math.ceil(data.count/max_len);
             if (options["totalPages"] <= 5) {
