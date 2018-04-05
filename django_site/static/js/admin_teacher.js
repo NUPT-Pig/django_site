@@ -2,7 +2,7 @@
  * Created by anshun on 18-1-2.
  */
 var base_teacher_url = "../teachers/";
-var max_len=3;
+var max_len=20;
 
 function add_teachers_admin(data) {
     $.each(data.results, function(){
@@ -22,7 +22,7 @@ function add_teachers_admin(data) {
     
     $(".teacher_unclicked_admin").click(function () {
         $(this).attr("class", "teacher_clicked_admin");
-        window.open("teacher_modify.html");
+        window.open("teacher_detail.html", '', 'width=500, height=600');
     });
 }
 

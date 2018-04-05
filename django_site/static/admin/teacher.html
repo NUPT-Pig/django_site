@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>账单</title>
+    <title>员工管理</title>
     <link rel="stylesheet" href="../third-party/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/admin.css">
     <script src="../third-party/jquery/jquery-3.2.1.js"></script>
@@ -15,24 +15,25 @@
         <div class="row">
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="main.html">主页</a></li>
-                <li role="presentation" class="active"><a href="#">账单</a></li>
-                <li role="presentation"><a href="teacher.html">员工</a></li>
+                <li role="presentation"><a href="account.html">账单</a></li>
+                <li role="presentation" class="active"><a href="#">员工</a></li>
                 <li role="presentation"><a href="task.html">任务</a></li>
                 <li role="presentation"><a href="student.html">学生</a></li>
             </ul>
         </div>
         <div class="row">
-            <table class="table table-bordered" id="account_table">
+            <table id="teacher_table" class="table table-bordered">
                 <tr>
-                    <th>数据库编号</th>
-                    <th>时间</th>
-                    <th>金额</th>
-                    <th>员工</th>
+                    <th>员工编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>部门</th>
+                    <th>职位</th>
                 </tr>
             </table>
             <div class="col-md-offset-5" style="text-align: right"> <ul id="account_paginator"></ul> </div>
-            <script src="../js/admin_account.js"></script>
-            <script>refresh_account()</script>
+            <script src="../js/admin_teacher.js"></script>
+            <script>refresh_teachers()</script>
         </div>
     </div>
 </body>
