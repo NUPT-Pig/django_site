@@ -1,10 +1,12 @@
 
 var base_account_detail_url = "../helpers/account_detail/";
+var base_account_check_url = "../helpers/account_check/";
 
 function load_account(){
     var account_id = $(".detail_clicked", window.opener.document).text();
     $(".detail_clicked", window.opener.document).attr("class", "un_clicked");
     base_account_detail_url = base_account_detail_url + account_id + "/";
+    base_account_check_url = base_account_check_url + account_id + "/";
     $.getJSON(base_account_detail_url, function(data, status) {
         if(status === "success"){
             $("#account_id").val(data.id);
@@ -44,7 +46,7 @@ $("#account_check").click(function(){
     var result = confirm("确定通过审核吗？");
     if (result === false) {return 0;}
     $.ajax({
-            url: base_account_detail_url,
+            url: base_account_check_url,
             type: "patch",
             contentType: "application/json",
             headers: {"X-CSRFToken": Cookies.get('csrftoken')},

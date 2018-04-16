@@ -12,7 +12,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ['id', 'username', 'money', 'date', 'valid']
+        fields = ['id', 'username', 'money', 'date', 'valid', 'comment']
 
     def get_username(self, obj):
         return obj.user.username

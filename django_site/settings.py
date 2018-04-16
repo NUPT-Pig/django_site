@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'supporter',
     'upload_files',
     'tasks',
-    'helper'
+    'helper',
+    'course'
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,4 @@
 .idea
 .idea/workspace.xml
 django_site/log
+django_site/media

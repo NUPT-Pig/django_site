@@ -9,7 +9,7 @@ from teachers.models import Teacher
 
 
 class Course(models.Model):
-    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL)
+    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=64, default='未命名')
     course_id = models.IntegerField(default=0)
 

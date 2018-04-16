@@ -17,5 +17,5 @@ class Account(models.Model):
     comment = models.TextField(default="no comment")
     date = models.DateField(null=True)
     valid = models.BooleanField(default=False)
-    check_list = models.CharField(max_length=5, null=True)
+    check_list = models.CharField(max_length=10, null=True)
     file = models.FileField(upload_to=set_path, blank=True, null=True)

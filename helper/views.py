@@ -14,7 +14,7 @@ from helper.serializers import AccountSerializer, AccountDetailSerializer
 
 
 class AccountView(generics.ListCreateAPIView):
-    queryset = Account.objects.all().order_by("date")
+    queryset = Account.objects.all().order_by("-date")
     serializer_class = AccountSerializer
 
     def create(self, request, *args, **kwargs):
@@ -40,6 +40,35 @@ class AccountView(generics.ListCreateAPIView):
 class AccountDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountDetailSerializer
+
+
+class AccountCheckView(generics.RetrieveUpdateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountDetailSerializer
+
+    def patch(self, request, *args, **kwargs):
+        if self.request.user.id not in [2, 3, 6]:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return self.partial_update(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            if self.request.user.id == 6:
+                instance.valid = True
+                instance.save()
+                return Response(status=status.HTTP_200_OK)
+            check_list = json.loads(instance.check_list) if instance.check_list is not None else []
+            if self.request.user.id not in check_list:
+                check_list.append(self.request.user.id)
+            instance.check_list = json.dumps(check_list)
+            if len(check_list) == 2:
+                instance.valid = True
+            instance.save()
+
+            return Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            print (e)
 
 
 class TestView(APIView):
