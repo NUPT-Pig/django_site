@@ -17,8 +17,17 @@ class AccountView(generics.ListCreateAPIView):
     queryset = Account.objects.all().order_by("-date")
     serializer_class = AccountSerializer
 
+    def get(self, request, *args, **kwargs):
+        try:
+            print (request.user.username)
+            return self.list(request, *args, **kwargs)
+        except Exception as e:
+            print (e)
+
     def create(self, request, *args, **kwargs):
         try:
+            if request.user is None:
+                return Response(status=status.HTTP_400_BAD_REQUEST, data="no user provide")
             serializer = self.get_serializer(data=json.loads(request.data.get('account_detail')))
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)

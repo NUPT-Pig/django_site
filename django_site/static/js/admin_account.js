@@ -16,6 +16,8 @@ function add_account_td($tr, data){
     $tr.append($td);
     $td = $("<td>" + data.username + "</td>");
     $tr.append($td);
+    $td = $("<td>" +data.comment + "</td>");
+    $tr.append($td);
 }
 
 
