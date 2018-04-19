@@ -55,10 +55,10 @@ class RegisterView(APIView):
     def post(self, request):
         username = request.data.get('username', None)
         password = request.data.get('password', None)
-        logger.info('%s register' % username)
+        logger.info('%s register' % str(username))
         try:
             if User.objects.filter(username=username).exists():
-                logger.error('%s already exist.' % username)
+                logger.error(u'%s already exist.' % username)
                 return Response(status=status.HTTP_409_CONFLICT)
             user = User(username=username)
             user.set_password(password)

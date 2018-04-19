@@ -1,9 +1,10 @@
 
 var base_account_detail_url = "../helpers/account_detail/";
 var base_account_check_url = "../helpers/account_check/";
+var account_id = -1;
 
 function load_account(){
-    var account_id = $(".detail_clicked", window.opener.document).text();
+    account_id = $(".detail_clicked", window.opener.document).text();
     $(".detail_clicked", window.opener.document).attr("class", "un_clicked");
     base_account_detail_url = base_account_detail_url + account_id + "/";
     base_account_check_url = base_account_check_url + account_id + "/";
@@ -56,6 +57,7 @@ $("#account_check").click(function(){
             statusCode: {
                 200: function(){
                     alert('审核成功');
+                    window.close();
                 }
             }
         });

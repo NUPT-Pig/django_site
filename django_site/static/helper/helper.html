@@ -107,7 +107,12 @@
             </table>
         </div>
         <div class="row">
-            <a href="../admin/account.html"><button>更多操作</button></a>
+            <script>
+                function open_account() {
+                    window.open("../admin/account.html");
+                }
+            </script>
+            <button onclick="open_account()">更多操作</button>
         </div>
     </div>
 

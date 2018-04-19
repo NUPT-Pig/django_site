@@ -19,7 +19,6 @@ class AccountView(generics.ListCreateAPIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            print (request.user.username)
             return self.list(request, *args, **kwargs)
         except Exception as e:
             print (e)

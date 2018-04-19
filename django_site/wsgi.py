@@ -13,7 +13,7 @@ from os.path import join, dirname, abspath
 
 
 PROJECT_DIR = dirname(dirname(abspath(__file__)))
-print (PROJECT_DIR)
+#print (PROJECT_DIR)
 import sys
 sys.path.insert(0, PROJECT_DIR)
 

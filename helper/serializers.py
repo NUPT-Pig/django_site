@@ -29,4 +29,7 @@ class AccountDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_username(self, obj):
-        return obj.user.username
+        if obj.user is not None:
+            return obj.user.username
+        else:
+            return "wrong user"

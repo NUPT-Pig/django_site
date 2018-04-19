@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!u-b4mgvi7gwq#1auiohh2^nenpasb0c^)x^3_e@tj%2(1ifcp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 #if DEBUG=False must set it
 ALLOWED_HOSTS = ['*']
 
@@ -162,6 +162,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'django_site/static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'django_site/media/')
 
+
 #logging
 LOGGER_LEVEL = "DEBUG"
 LOGGING = {
@@ -185,7 +186,8 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'django_site/log/django.log'),
-            'formatter': 'verbose'
+            'formatter': 'verbose',
+            'encoding': 'utf8'
         },
     },
     'loggers': {
