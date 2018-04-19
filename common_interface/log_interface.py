@@ -12,6 +12,7 @@ def get_logger(name='general'):
                                 'maxBytes': 500000,
                                 'backupCount': 5,
                                 'formatter': 'verbose',
+                                'encoding': 'utf8'
                                 }
         settings.LOGGING['loggers'][name] = {
                                 'handlers': ['console', name],
