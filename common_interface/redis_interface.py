@@ -15,4 +15,4 @@ class RedisSingleton(object):
 
 def get_redis():
     redis_global = RedisSingleton()
-    return redis_global
+    return redis_global.r
