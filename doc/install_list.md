@@ -6,6 +6,7 @@
 # apache2
 # apache2-dev
 # libapache2-mod-wsgi[-py3]
+# django_site 下面创建log文件夹，当然也可以修改settings里面的日志目录
 # 部署
 + wsgi + apache2 + ubuntu 部署
     - sudo apt-get install apache2 apache2-dev libapache2-mod-wsgi[-py3]
