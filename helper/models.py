@@ -12,7 +12,7 @@ def set_path(instance, filename):
 
 
 class Account(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=False)
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     money = models.FloatField(default=0)
     comment = models.TextField(default="no comment")
     date = models.DateField(null=True)
